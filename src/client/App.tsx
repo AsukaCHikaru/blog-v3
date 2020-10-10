@@ -1,4 +1,5 @@
 import * as React from "react";
+import styled from "styled-components";
 
 export const App: React.FC = () => {
   const [counter, setCounter] = React.useState(0);
@@ -7,5 +8,11 @@ export const App: React.FC = () => {
     setCounter(counter + 1);
   };
 
-  return <div onClick={handleClick}>{`app counter ${counter}`}</div>;
+  return (
+    <StyledDiv onClick={handleClick}>{`app counter ${counter}`}</StyledDiv>
+  );
 };
+
+const StyledDiv = styled.div`
+  color: red;
+`;
