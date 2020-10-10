@@ -2,9 +2,12 @@
   "compilerOptions": {
     "target": "ES5",
     "module": "CommonJS",
-    "lib": ["DOM", "ESNext"],
+    "lib": ["DOM", "ES5"],
     "strict": true,
-    "noImplicitAny": true
+    "noImplicitAny": true,
+    "moduleResolution": "Node",
+    "jsx": "react"
   },
+  "include": ["src"],
   "exclude": ["node_modules"]
 }

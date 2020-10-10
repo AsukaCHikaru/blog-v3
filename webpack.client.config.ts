@@ -1,25 +1,38 @@
 import * as webpack from "webpack";
-import * as path from "path";
+import { resolve } from "path";
 
 const config: webpack.Configuration = {
   mode: "development",
-  entry: "./src/client/main.ts",
-  context: path.resolve(__dirname),
+  entry: "./src/client/index.tsx",
+  context: resolve(__dirname),
   output: {
     filename: "client.bundle.js",
-    path: path.resolve(__dirname, "dist", "client"),
+    path: resolve(__dirname, "dist", "static"),
   },
   module: {
     rules: [
       {
         test: /\.tsx?$/,
-        use: "ts-loader",
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: "babel-loader",
+          },
+          {
+            loader: "ts-loader",
+
+            options: {
+              configFile: "tsconfig.json",
+            },
+          },
+        ],
       },
     ],
   },
   resolve: {
-    extensions: [".ts", ".tsx"],
+    extensions: [".ts", ".tsx", ".js", ".json"],
   },
+  devtool: "cheap-module-source-map",
 };
 
 export default config;
