@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { fetchPost, fetchPostList } from "../hooks/api/apiCore";
 import { PostDetail, PostSummary } from "../types";
@@ -28,12 +28,15 @@ export const PostPage: React.FC<OwnProps> = ({}) => {
   };
 
   React.useEffect(() => {
-    console.log("effect");
-
     fetch();
   }, []);
 
-  return <StyledContainer>{postDetail?.body}</StyledContainer>;
+  return (
+    <StyledContainer>
+      {postDetail?.body}
+      <Link to="/">back</Link>
+    </StyledContainer>
+  );
 };
 
 const StyledContainer = styled.div``;
