@@ -8,6 +8,15 @@ import { App } from "../client/App";
 
 export const renderer = (app: Express.Application) => {
   app.get("*", (req: Express.Request, res: Express.Response) => {
+    if (/client\.bundle\.js/.test(req.url)) {
+      res.redirect("/client.bundle.js");
+      return;
+    }
+    if (/favicon\.ico/.test(req.url)) {
+      res.send("");
+      return;
+    }
+
     const context = {};
     const sheet = new ServerStyleSheet();
     let htmlBody = "";
@@ -27,7 +36,6 @@ export const renderer = (app: Express.Application) => {
       sheet.seal();
     }
     const fullHTML = getFullHTML(htmlBody, styleTags);
-
     res.send(fullHTML);
   });
 };
