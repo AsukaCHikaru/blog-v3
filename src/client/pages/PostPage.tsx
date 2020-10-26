@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
-import { fetchPost, fetchPostList } from "../hooks/api/apiCore";
+import { getPost, getPostList } from "../hooks/api/apiCore";
 import { PostDetail, PostSummary } from "../types";
 
 interface OwnProps {}
@@ -15,13 +15,13 @@ export const PostPage: React.FC<OwnProps> = ({}) => {
   const { postPath } = useParams<Params>();
 
   const fetch = async () => {
-    const posts: PostSummary[] = await fetchPostList();
+    const posts: PostSummary[] = await getPostList();
     console.log(posts);
 
     const postId = posts.find((post) => post.path === postPath)?.id || "1";
     console.log(postId);
 
-    const postDetailData = await fetchPost(postId);
+    const postDetailData = await getPost(postId);
     console.log(postDetailData);
 
     setPostDetail(postDetailData);

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const fetchPostList = async (tag?: string, category?: string) => {
+export const getPostList = async (tag?: string, category?: string) => {
   let fetchPostListApiEndpoint = "http://localhost:9000/api/v1/posts";
   if (tag) fetchPostListApiEndpoint += `/tag/${tag}`;
   if (category) fetchPostListApiEndpoint += `/category/${category}`;
@@ -9,7 +9,7 @@ export const fetchPostList = async (tag?: string, category?: string) => {
   return response.data;
 };
 
-export const fetchPost = async (id: string) => {
+export const getPost = async (id: string) => {
   const response = await axios.get(
     `http://localhost:9000/api/v1/posts/id/${id}`
   );
