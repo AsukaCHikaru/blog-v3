@@ -1,7 +1,7 @@
 import { RouteProps } from "react-router-dom";
 
 import { PostListPageContainer } from "./pages/PostListPageContainer";
-import { PostPage } from "./pages/PostPage";
+import { PostPageContainer } from "./pages/PostPageContainer";
 
 export const routes: RouteProps[] = [
   {
@@ -11,6 +11,6 @@ export const routes: RouteProps[] = [
   },
   {
     path: "/post/:postPath",
-    component: PostPage,
+    component: PostPageContainer,
   },
 ];

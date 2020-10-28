@@ -1,39 +1,45 @@
 import * as React from "react";
+import { useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
-import { getPost, getPostList } from "../hooks/api/apiCore";
-import { PostDetail, PostSummary } from "../types";
+
+import { RootState } from "../service/reducer";
 
 interface OwnProps {}
+
+interface ConnectedDispatchProps {
+  callFetchPost: (postId: string) => void;
+  callFetchPostList: () => void;
+}
+interface PostPageProps extends OwnProps, ConnectedDispatchProps {}
 
 interface Params {
   postPath: string;
 }
 
-export const PostPage: React.FC<OwnProps> = ({}) => {
-  const [postDetail, setPostDetail] = React.useState<PostDetail>();
+export const PostPage: React.FC<PostPageProps> = ({
+  callFetchPost,
+  callFetchPostList,
+}) => {
   const { postPath } = useParams<Params>();
-
-  const fetch = async () => {
-    const posts: PostSummary[] = await getPostList();
-    console.log(posts);
-
-    const postId = posts.find((post) => post.path === postPath)?.id || "1";
-    console.log(postId);
-
-    const postDetailData = await getPost(postId);
-    console.log(postDetailData);
-
-    setPostDetail(postDetailData);
-  };
+  const postList = useSelector((state: RootState) => state.postList);
+  const post = useSelector((state: RootState) => state.post);
 
   React.useEffect(() => {
-    fetch();
+    callFetchPostList();
   }, []);
+
+  const postId = React.useMemo(() => {
+    return postList.list.find((post) => post.path === postPath)?.id;
+  }, [postList]);
+
+  React.useEffect(() => {
+    if (postId && !post.data[postId]) callFetchPost(postId);
+  }, [postId]);
 
   return (
     <StyledContainer>
-      {postDetail?.body}
+      {postId && post?.data[postId]?.body}
       <Link to="/">back</Link>
     </StyledContainer>
   );

@@ -1,6 +1,7 @@
 import { AxiosError } from "axios";
 import { combineReducers, Reducer } from "redux";
 import { postListReducer, PostListState } from "./postListReducer";
+import { postReducer, PostState } from "./postReducer";
 
 export const STORE_STATUS = {
   IDLE: 1,
@@ -17,8 +18,10 @@ export interface BaseState {
 
 export interface RootState {
   postList: PostListState;
+  post: PostState;
 }
 
 export const rootReducer: Reducer<RootState> = combineReducers({
   postList: postListReducer,
+  post: postReducer,
 });

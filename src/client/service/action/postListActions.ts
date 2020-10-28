@@ -1,6 +1,5 @@
 import { AxiosError } from "axios";
 import { Action } from "redux";
-import { getPostList } from "../../hooks/api/apiCore";
 
 import { PostSummary } from "../../types";
 
