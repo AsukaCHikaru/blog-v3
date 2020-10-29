@@ -27,12 +27,31 @@ export const PostListPage: React.FC<PostListPageProps> = ({
     if (postList.status === STORE_STATUS.IDLE) callFetchPostList();
   }, []);
 
+  const filteredPostList = React.useMemo(() => {
+    if (!tag && !category) {
+      return postList;
+    }
+    if (tag) {
+      return {
+        ...postList,
+        list: postList.list.filter((post) => post.tags.includes(tag)),
+      };
+    }
+    if (category) {
+      return {
+        ...postList,
+        list: postList.list.filter((post) => post.category === category),
+      };
+    }
+  }, [tag, category, postList]);
+
   return (
     <StyledContainer>
       <h1>The work is undone.</h1>
-      {postList.list &&
-        postList.list.length > 0 &&
-        postList.list.map((post) => (
+      {filteredPostList &&
+        filteredPostList.list &&
+        filteredPostList.list.length > 0 &&
+        filteredPostList.list.map((post) => (
           <PostLink postSummary={post} key={post.path} />
         ))}
     </StyledContainer>

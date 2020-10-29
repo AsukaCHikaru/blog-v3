@@ -5,7 +5,7 @@ import { PostPageContainer } from "./pages/PostPageContainer";
 
 export const routes: RouteProps[] = [
   {
-    path: ["/", "/catgory/:category", "/tag/:tag"],
+    path: ["/", "/category/:category", "/tag/:tag"],
     exact: true,
     component: PostListPageContainer,
   },
