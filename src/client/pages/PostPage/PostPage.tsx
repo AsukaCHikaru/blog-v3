@@ -7,6 +7,7 @@ import { RootState } from "../../service/reducer";
 import { PostPageHeader } from "../../comonents/PostPageHeader";
 import { Footer } from "../../comonents/Footer";
 import { PostPageFooter } from "../../comonents/PostPageFooter";
+import { PostBody } from "../../comonents/PostBody";
 
 interface OwnProps {}
 
@@ -51,7 +52,14 @@ export const PostPage: React.FC<PostPageProps> = ({
   return (
     <StyledContainer>
       <PostPageHeader postSummary={postSummary} />
-      {post?.data[postId]?.body && post?.data[postId]?.body}
+      {post?.data[postId]?.body ? (
+        <PostBody postBody={post?.data[postId].body} />
+      ) : (
+        <>
+          <PostBody postBody={postSummary.body} />
+          ...
+        </>
+      )}
       <PostPageFooter />
       <Footer />
     </StyledContainer>
