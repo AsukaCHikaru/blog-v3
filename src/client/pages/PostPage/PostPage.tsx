@@ -1,9 +1,12 @@
 import * as React from "react";
 import { useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
-import { RootState } from "../service/reducer";
+import { RootState } from "../../service/reducer";
+import { PostPageHeader } from "../../comonents/PostPageHeader";
+import { Footer } from "../../comonents/Footer";
+import { PostPageFooter } from "../../comonents/PostPageFooter";
 
 interface OwnProps {}
 
@@ -33,14 +36,24 @@ export const PostPage: React.FC<PostPageProps> = ({
     return postList.list.find((post) => post.path === postPath)?.id;
   }, [postList]);
 
+  const postSummary = React.useMemo(() => {
+    return postList.list.find((post) => post.id === postId);
+  }, [postId, post]);
+
   React.useEffect(() => {
     if (postId && !post.data[postId]) callFetchPost(postId);
   }, [postId]);
 
+  if (!postId || !postSummary) {
+    return <StyledContainer>LOADING</StyledContainer>;
+  }
+
   return (
     <StyledContainer>
-      {postId && post?.data[postId]?.body}
-      <Link to="/">back</Link>
+      <PostPageHeader postSummary={postSummary} />
+      {post?.data[postId]?.body && post?.data[postId]?.body}
+      <PostPageFooter />
+      <Footer />
     </StyledContainer>
   );
 };

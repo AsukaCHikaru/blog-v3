@@ -1,10 +1,12 @@
 import * as React from "react";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import styled from "styled-components";
 
-import { PostLink } from "../comonents/PostLink";
-import { RootState, STORE_STATUS } from "../service/reducer";
+import { PostLink } from "../../comonents/PostLink";
+import { RootState, STORE_STATUS } from "../../service/reducer";
+import { PostListPageHeader } from "../../comonents/PostListPageHeader";
+import { Footer } from "../../comonents/Footer";
 
 interface OwnProps {}
 interface ConnectedDispatchProps {
@@ -20,11 +22,18 @@ interface Params {
 export const PostListPage: React.FC<PostListPageProps> = ({
   callFetchPostList,
 }) => {
+  const history = useHistory();
   const { tag, category } = useParams<Params>();
   const postList = useSelector((state: RootState) => state.postList);
 
   React.useEffect(() => {
     if (postList.status === STORE_STATUS.IDLE) callFetchPostList();
+  }, []);
+
+  React.useEffect(() => {
+    if (history.action === "PUSH") {
+      window.scrollTo(0, 0);
+    }
   }, []);
 
   const filteredPostList = React.useMemo(() => {
@@ -47,13 +56,14 @@ export const PostListPage: React.FC<PostListPageProps> = ({
 
   return (
     <StyledContainer>
-      <h1>The work is undone.</h1>
+      <PostListPageHeader />
       {filteredPostList &&
         filteredPostList.list &&
         filteredPostList.list.length > 0 &&
         filteredPostList.list.map((post) => (
           <PostLink postSummary={post} key={post.path} />
         ))}
+      <Footer />
     </StyledContainer>
   );
 };
