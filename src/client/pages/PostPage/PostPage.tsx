@@ -8,6 +8,7 @@ import { PostPageHeader } from "../../comonents/PostPageHeader";
 import { Footer } from "../../comonents/Footer";
 import { PostPageFooter } from "../../comonents/PostPageFooter";
 import { PostBody } from "../../comonents/PostBody";
+import { PostPageLayout } from "../../comonents/Layout";
 
 interface OwnProps {}
 
@@ -50,19 +51,21 @@ export const PostPage: React.FC<PostPageProps> = ({
   }
 
   return (
-    <StyledContainer>
-      <PostPageHeader postSummary={postSummary} />
-      {post?.data[postId]?.body ? (
-        <PostBody postBody={post?.data[postId].body} />
-      ) : (
-        <>
-          <PostBody postBody={postSummary.body} />
-          ...
-        </>
-      )}
-      <PostPageFooter />
-      <Footer />
-    </StyledContainer>
+    <PostPageLayout>
+      <StyledContainer>
+        <PostPageHeader postSummary={postSummary} />
+        {post?.data[postId]?.body ? (
+          <PostBody postBody={post?.data[postId].body} />
+        ) : (
+          <>
+            <PostBody postBody={postSummary.body} />
+            ...
+          </>
+        )}
+        <PostPageFooter />
+        <Footer />
+      </StyledContainer>
+    </PostPageLayout>
   );
 };
 

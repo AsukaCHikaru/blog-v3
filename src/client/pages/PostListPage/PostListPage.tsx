@@ -7,6 +7,7 @@ import { PostLink } from "../../comonents/PostLink";
 import { RootState, STORE_STATUS } from "../../service/reducer";
 import { PostListPageHeader } from "../../comonents/PostListPageHeader";
 import { Footer } from "../../comonents/Footer";
+import { PostListPageLayout } from "../../comonents/Layout";
 
 interface OwnProps {}
 interface ConnectedDispatchProps {
@@ -55,16 +56,18 @@ export const PostListPage: React.FC<PostListPageProps> = ({
   }, [tag, category, postList]);
 
   return (
-    <StyledContainer>
-      <PostListPageHeader />
-      {filteredPostList &&
-        filteredPostList.list &&
-        filteredPostList.list.length > 0 &&
-        filteredPostList.list.map((post) => (
-          <PostLink postSummary={post} key={post.path} />
-        ))}
-      <Footer />
-    </StyledContainer>
+    <PostListPageLayout>
+      <StyledContainer>
+        <PostListPageHeader selectedCategory={category} />
+        {filteredPostList &&
+          filteredPostList.list &&
+          filteredPostList.list.length > 0 &&
+          filteredPostList.list.map((post) => (
+            <PostLink postSummary={post} key={post.path} />
+          ))}
+        <Footer />
+      </StyledContainer>
+    </PostListPageLayout>
   );
 };
 

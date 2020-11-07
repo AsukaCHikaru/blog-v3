@@ -17,10 +17,24 @@ export const PostPageFooter: React.FC<OwnProps> = ({}) => {
   );
 };
 
-const StyledContainer = styled.div``;
+const StyledContainer = styled.div`
+  margin-top: 40px;
+`;
 
-const StyledTitle = styled(Link)``;
+const StyledTitle = styled(Link)`
+  font-size: 30px;
+  font-weight: 900;
+`;
 
 const StyledCategoryContainer = styled.div``;
 
-const StyledCategory = styled(Link)``;
+const StyledCategory = styled(Link)`
+  padding: 0 8px;
+  font-size: 18px;
+  font-family: "Courier New", Courier, "Noto Sans JP", monospace;
+  border-left: solid 1px #131313;
+  &:first-of-type {
+    border-left: none;
+    padding-left: 0;
+  }
+`;

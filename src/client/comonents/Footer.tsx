@@ -7,7 +7,7 @@ type OwnProps = {};
 export const Footer: React.FC<OwnProps> = ({}) => {
   return (
     <StyledFooter>
-      <StyledFooterContent>© 2020</StyledFooterContent>
+      <StyledFooterContent>© 2020 </StyledFooterContent>
       <StyledFooterLink
         target="_blank"
         rel="noopener noreferrer"
@@ -19,7 +19,13 @@ export const Footer: React.FC<OwnProps> = ({}) => {
   );
 };
 
-const StyledFooter = styled.footer``;
+const StyledFooter = styled.footer`
+  margin-top: 40px;
+  & span,
+  a {
+    font-family: "Courier New", Courier, "Noto Sans JP", monospace;
+  }
+`;
 
 const StyledFooterContent = styled.span``;
 

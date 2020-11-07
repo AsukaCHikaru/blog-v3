@@ -16,7 +16,7 @@ export const PostPageHeader: React.FC<OwnProps> = ({ postSummary }) => {
         <StyledPublishDate>{postSummary.publishDate}</StyledPublishDate>
         {postSummary.tags.map((tag) => (
           <StyledTag key={tag} to={`/tag/${tag}`}>
-            {tag}
+            #{tag}
           </StyledTag>
         ))}
       </StyledInfoContainer>
@@ -24,12 +24,31 @@ export const PostPageHeader: React.FC<OwnProps> = ({ postSummary }) => {
   );
 };
 
-const StyledContainer = styled.div``;
+const StyledContainer = styled.div`
+  margin-bottom: 40px;
+`;
 
-const StyledTitle = styled.h1``;
+const StyledTitle = styled.h1`
+  font-size: 50px;
+  font-weight: 400;
+`;
 
-const StyledInfoContainer = styled.div``;
+const StyledInfoContainer = styled.div`
+  margin-top: 10px;
+  font-size: 20px;
+`;
 
-const StyledPublishDate = styled.span``;
+const StyledPublishDate = styled.span`
+  padding-right: 5px;
+`;
 
-const StyledTag = styled(Link)``;
+const StyledTag = styled(Link)`
+  padding: 0 5px;
+  font-weight: 100;
+  font-family: "Noto Sans JP", sans-serif;
+  color: #666666;
+
+  &:hover {
+    text-decoration: underline;
+  }
+`;

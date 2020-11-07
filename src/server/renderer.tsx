@@ -46,6 +46,10 @@ export const getFullHTML = (htmlBody: string, styleTags: string) => {
     <html>
       <head>
         ${styleTags}
+        <style>
+          @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700;900&display=swap');
+          @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;400&display=swap');
+        </style>
       </head>
       <body>
         <div id="app-root">${htmlBody}</div>
