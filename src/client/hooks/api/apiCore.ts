@@ -1,7 +1,9 @@
 import axios from "axios";
 
+const API_BASE_URL = "http://api-blog-server.asukachikaru.com:9000";
+
 export const getPostList = async (tag?: string, category?: string) => {
-  let fetchPostListApiEndpoint = "http://localhost:9000/api/v1/posts";
+  let fetchPostListApiEndpoint = API_BASE_URL + "/api/v1/posts";
   if (tag) fetchPostListApiEndpoint += `/tag/${tag}`;
   if (category) fetchPostListApiEndpoint += `/category/${category}`;
 
@@ -10,8 +12,6 @@ export const getPostList = async (tag?: string, category?: string) => {
 };
 
 export const getPost = async (id: string) => {
-  const response = await axios.get(
-    `http://localhost:9000/api/v1/posts/id/${id}`
-  );
+  const response = await axios.get(API_BASE_URL + `/api/v1/posts/id/${id}`);
   return response.data;
 };
