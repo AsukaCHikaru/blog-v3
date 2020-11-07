@@ -31,6 +31,11 @@ const StyledBody = styled.div`
       font-size: 15px;
       color: #363636;
     }
+
+    & img {
+      margin: 0 auto;
+      max-width: 90%;
+    }
   }
 
   h1 {

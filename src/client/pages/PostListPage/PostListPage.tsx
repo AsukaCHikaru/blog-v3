@@ -8,6 +8,7 @@ import { RootState, STORE_STATUS } from "../../service/reducer";
 import { PostListPageHeader } from "../../comonents/PostListPageHeader";
 import { Footer } from "../../comonents/Footer";
 import { PostListPageLayout } from "../../comonents/Layout";
+import { Helmet } from "../../comonents/Helmet";
 
 interface OwnProps {}
 interface ConnectedDispatchProps {
@@ -35,7 +36,7 @@ export const PostListPage: React.FC<PostListPageProps> = ({
     if (history.action === "PUSH") {
       window.scrollTo(0, 0);
     }
-  }, []);
+  }, [history]);
 
   const filteredPostList = React.useMemo(() => {
     if (!tag && !category) {
@@ -57,6 +58,7 @@ export const PostListPage: React.FC<PostListPageProps> = ({
 
   return (
     <PostListPageLayout>
+      <Helmet />
       <StyledContainer>
         <PostListPageHeader selectedCategory={category} />
         {filteredPostList &&
