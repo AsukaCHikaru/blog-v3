@@ -1,17 +1,29 @@
-import axios from "axios";
+import axios, { AxiosRequestConfig } from "axios";
 
-const API_BASE_URL = "http://api-blog-server.asukachikaru.com:9000";
+import { POSTS_API_ENDPOINT, GITHUB_TOKEN } from "./env";
+import { normalizePostDetailData, normalizePostSummariesData } from "./utils";
+
+const axiosAuthHeader: AxiosRequestConfig = {
+  headers: {
+    Authorization: `token ${GITHUB_TOKEN}`,
+  },
+};
 
 export const getPostList = async (tag?: string, category?: string) => {
-  let fetchPostListApiEndpoint = API_BASE_URL + "/api/v1/posts";
-  if (tag) fetchPostListApiEndpoint += `/tag/${tag}`;
-  if (category) fetchPostListApiEndpoint += `/category/${category}`;
-
-  const response = await axios.get(fetchPostListApiEndpoint);
-  return response.data;
+  const posts = await axios.get(POSTS_API_ENDPOINT, axiosAuthHeader);
+  const postSummaries = normalizePostSummariesData(posts.data);
+  return postSummaries;
 };
 
 export const getPost = async (id: string) => {
-  const response = await axios.get(API_BASE_URL + `/api/v1/posts/id/${id}`);
-  return response.data;
+  const post = await axios.get(`${POSTS_API_ENDPOINT}/${id}`, axiosAuthHeader);
+  const postDetail = normalizePostDetailData(post.data);
+
+  const postBody: any = await axios.get(
+    `${POSTS_API_ENDPOINT}/${id}/comments`,
+    axiosAuthHeader
+  );
+
+  postDetail.body = postBody.data[0].body;
+  return postDetail;
 };

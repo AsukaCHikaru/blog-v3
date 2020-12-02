@@ -31,6 +31,13 @@ const config: webpack.Configuration = {
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".json"],
   },
+  plugins: [
+    new webpack.DefinePlugin({
+      "process.env": {
+        GITHUB_TOKEN: JSON.stringify(process.env.GITHUB_TOKEN || ""),
+      },
+    }),
+  ],
   devtool: "cheap-module-source-map",
 };
 
