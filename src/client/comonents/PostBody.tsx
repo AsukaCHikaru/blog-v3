@@ -7,29 +7,55 @@ type OwnProps = {
   postBody: string | ContentfulRichTextContent["content"];
 };
 
-const postBodyParser = (content: ContentfulRichTextContent) => {
+const postBodyParser = (
+  content: ContentfulRichTextContent,
+  index: number | string
+) => {
   if (!content.content) {
     if (content.value) {
-      return content.value;
+      if (content.marks.length === 0) {
+        return content.value;
+      }
+      if (content.marks[0].type === "code") {
+        return <code>{content.value}</code>;
+      }
     }
     return null;
   }
-  const body = content.content.map((item) => postBodyParser(item));
+  const body = content.content.map((item, indexLv2) =>
+    postBodyParser(item, `${index}-${indexLv2}`)
+  );
   switch (content.nodeType) {
     case "paragraph":
-      return <p>{body}</p>;
+      return <p key={`content-${index}`}>{body}</p>;
+    case "heading-1":
+      return <h1 key={`content-${index}`}>{body}</h1>;
     case "heading-2":
-      return <h2>{body}</h2>;
+      return <h2 key={`content-${index}`}>{body}</h2>;
     case "heading-3":
-      return <h3>{body}</h3>;
+      return <h3 key={`content-${index}`}>{body}</h3>;
     case "unordered-list":
-      return <ul>{body}</ul>;
+      return <ul key={`content-${index}`}>{body}</ul>;
+    case "ordered-list":
+      return <ol key={`content-${index}`}>{body}</ol>;
     case "list-item":
-      return <li>{body}</li>;
+      return <li key={`content-${index}`}>{body}</li>;
     case "hyperlink":
-      return <a href={content.data.uri}>{body}</a>;
+      if (content.data.uri && /www\.youtube\.com/.test(content.data.uri)) {
+        const youtubeUri = content.data.uri.replace(/watch\?v=/, "embed/");
+        return (
+          <span className="iframeWrapper" key={`content-${index}`}>
+            <iframe id="ytplayer" width="640" height="360" src={youtubeUri} />
+          </span>
+        );
+      }
+      return (
+        <a href={content.data.uri} key={`content-${index}`}>
+          {body}
+        </a>
+      );
     case "blockquote":
-      return <blockquote>{body}</blockquote>;
+      return <blockquote key={`content-${index}`}>{body}</blockquote>;
     default:
       return null;
   }
@@ -52,7 +78,7 @@ export const PostBody: React.FC<OwnProps> = ({ postBody }) => {
   return (
     <StyledWrapper>
       <StyledBody>
-        {postBody.map((content) => postBodyParser(content))}
+        {postBody.map((content, index) => postBodyParser(content, index))}
       </StyledBody>
     </StyledWrapper>
   );
@@ -78,6 +104,23 @@ const StyledBody = styled.div`
       margin: 0 auto;
       max-width: 90%;
     }
+
+    & .iframeWrapper {
+      display: block;
+      text-align: center;
+
+      & iframe {
+        border: none;
+      }
+    }
+  }
+
+  a {
+    color: #0d69da;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 
   h1 {
@@ -91,6 +134,12 @@ const StyledBody = styled.div`
   h3 {
     font-size: 25px;
     line-height: 2;
+  }
+
+  li {
+    & p {
+      margin-bottom: 0;
+    }
   }
 
   pre {
