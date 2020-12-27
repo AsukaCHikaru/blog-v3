@@ -1,9 +1,10 @@
 import { PostDetail } from "../../types";
 import { StoreStatus, STORE_STATUS, BaseState } from ".";
 import { PostAction, PostActionTypes } from "../action/postActions";
+import { Post, ContentfulRichTextContent } from "../../hooks/api/types";
 
 export interface PostState extends BaseState {
-  data: Record<string, PostDetail>;
+  data: Record<string, ContentfulRichTextContent["content"]>;
 }
 
 const initialState: PostState = {
@@ -19,13 +20,14 @@ export const postReducer = (
     case PostActionTypes.FETCHING_POST:
       return { ...state, status: STORE_STATUS.PENDING };
     case PostActionTypes.FETCHED_POST:
-      const postId = action.payload.data.id;
+      const postId = action.payload.data.sys.id;
+
       return {
         ...state,
         status: STORE_STATUS.SUCCEED,
         data: {
           ...state.data,
-          [postId]: action.payload.data,
+          [postId]: action.payload.data.fields.body.content,
         },
       };
     default:

@@ -1,5 +1,6 @@
 import { AxiosError } from "axios";
 import { Action } from "redux";
+import { ContentfulEntry, PostContentType } from "../../hooks/api/types";
 
 import { PostDetail } from "../../types";
 
@@ -18,7 +19,7 @@ export const fetchingPost = (): FetchingPost => {
 };
 
 interface FetchedPostPayloadType {
-  data: PostDetail;
+  data: ContentfulEntry<PostContentType>;
   error?: AxiosError;
 }
 

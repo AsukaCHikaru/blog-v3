@@ -1,11 +1,12 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { PostCommonContentType } from "../hooks/api/types";
 
 import { PostList } from "../types";
 
 type OwnProps = {
-  postSummary: PostList;
+  postSummary: PostCommonContentType;
 };
 
 export const PostPageHeader: React.FC<OwnProps> = ({ postSummary }) => {
@@ -14,7 +15,7 @@ export const PostPageHeader: React.FC<OwnProps> = ({ postSummary }) => {
       <StyledTitle>{postSummary.title}</StyledTitle>
       <StyledInfoContainer>
         <StyledPublishDate>{postSummary.publishDate}</StyledPublishDate>
-        {postSummary.tags.map((tag) => (
+        {(postSummary.tags || []).map((tag) => (
           <StyledTag key={tag} to={`/tag/${tag}`}>
             #{tag}
           </StyledTag>

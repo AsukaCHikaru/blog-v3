@@ -1,4 +1,4 @@
-interface PostCommonContentType {
+export interface PostCommonContentType {
   author: string[];
   category: PostCategory;
   language: PostLanguage;
@@ -16,11 +16,12 @@ export interface PostListContentType extends PostCommonContentType {
 }
 
 export interface PostContentType extends PostCommonContentType {
-  body?: ContentfulRichTextContent;
+  body: ContentfulRichTextContent;
 }
 
-export interface Post extends PostCommonContentType, PostContentType {
+export interface Post extends PostCommonContentType {
   preview: string;
+  body: ContentfulRichTextContent;
   id: string;
 }
 
@@ -184,7 +185,7 @@ type ContentfulRichTextData = {
   target?: ContentfulRichTextDataTarget;
 };
 
-type ContentfulRichTextNodeType =
+export type ContentfulRichTextNodeType =
   | "text"
   | "heading-1"
   | "heading-2"
@@ -204,7 +205,7 @@ type ContentfulRichTextNodeType =
   | "embedded-entry-block"
   | "embedded-entry-inline";
 
-type ContentfulRichTextContent = {
+export type ContentfulRichTextContent = {
   data: ContentfulRichTextData;
   content?: ContentfulRichTextContent[];
   marks: { type: "bold" | "underline" | "code" | "italic" }[];

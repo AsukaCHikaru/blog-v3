@@ -21,7 +21,7 @@ export const postListReducer = (
     case PostListActionTypes.FETCHED_POST_LIST:
       const postList: PostList = action.payload.data.items.map((item) => {
         const { post, ...rest } = item.fields;
-        return { ...rest, id: item.sys.id };
+        return { ...rest, id: item.fields.post.sys.id };
       });
 
       return {

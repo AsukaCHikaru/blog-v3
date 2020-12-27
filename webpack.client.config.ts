@@ -41,7 +41,7 @@ const config: webpack.Configuration = {
       },
     }),
   ],
-  devtool: "cheap-module-source-map",
+  devtool: "inline-source-map",
 };
 
 export default config;

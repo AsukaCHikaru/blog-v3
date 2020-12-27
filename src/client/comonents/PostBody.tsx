@@ -1,18 +1,59 @@
 import * as React from "react";
 import styled from "styled-components";
 import * as marked from "marked";
+import { ContentfulRichTextContent } from "../hooks/api/types";
 
 type OwnProps = {
-  postBody: string;
+  postBody: string | ContentfulRichTextContent["content"];
+};
+
+const postBodyParser = (content: ContentfulRichTextContent) => {
+  if (!content.content) {
+    if (content.value) {
+      return content.value;
+    }
+    return null;
+  }
+  const body = content.content.map((item) => postBodyParser(item));
+  switch (content.nodeType) {
+    case "paragraph":
+      return <p>{body}</p>;
+    case "heading-2":
+      return <h2>{body}</h2>;
+    case "heading-3":
+      return <h3>{body}</h3>;
+    case "unordered-list":
+      return <ul>{body}</ul>;
+    case "list-item":
+      return <li>{body}</li>;
+    case "hyperlink":
+      return <a href={content.data.uri}>{body}</a>;
+    case "blockquote":
+      return <blockquote>{body}</blockquote>;
+    default:
+      return null;
+  }
 };
 
 export const PostBody: React.FC<OwnProps> = ({ postBody }) => {
-  const parsedPostBody = React.useMemo(() => {
-    return marked(postBody);
-  }, [postBody]);
+  if (!postBody) return null;
+  if (typeof postBody === "string") {
+    const parsedPostBody = React.useMemo(() => {
+      return marked(postBody);
+    }, [postBody]);
+    return (
+      <StyledWrapper>
+        <StyledBody dangerouslySetInnerHTML={{ __html: parsedPostBody }} />
+      </StyledWrapper>
+    );
+  }
+  console.log(postBody);
+
   return (
     <StyledWrapper>
-      <StyledBody dangerouslySetInnerHTML={{ __html: parsedPostBody }} />
+      <StyledBody>
+        {postBody.map((content) => postBodyParser(content))}
+      </StyledBody>
     </StyledWrapper>
   );
 };
@@ -24,6 +65,7 @@ const StyledBody = styled.div`
     margin-bottom: 27px;
     font-size: 18px;
     line-height: 2;
+    white-space: pre-wrap;
 
     & code {
       padding: 0 5px;

@@ -53,14 +53,14 @@ export const PostPage: React.FC<PostPageProps> = ({
 
   return (
     <PostPageLayout>
-      <Helmet title={postSummary.title} description={postSummary.body} />
+      <Helmet title={postSummary.title} description={postSummary.preview} />
       <StyledContainer>
         <PostPageHeader postSummary={postSummary} />
-        {post?.data[postId]?.body ? (
-          <PostBody postBody={post?.data[postId].body} />
+        {post?.data[postId] ? (
+          <PostBody postBody={post?.data[postId]} />
         ) : (
           <>
-            <PostBody postBody={postSummary.body} />
+            <PostBody postBody={postSummary.preview} />
             ...
           </>
         )}
