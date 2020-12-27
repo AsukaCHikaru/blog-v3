@@ -1,29 +1,35 @@
 import axios, { AxiosRequestConfig } from "axios";
 
-import { POSTS_API_ENDPOINT, GITHUB_TOKEN } from "./env";
-import { normalizePostDetailData, normalizePostSummariesData } from "./utils";
+import { CONETNTFUL_API_ENDPOINT, CONTENTFUL_TOKEN } from "./env";
 
 const axiosAuthHeader: AxiosRequestConfig = {
   headers: {
-    Authorization: `token ${GITHUB_TOKEN}`,
+    Authorization: `Bearer ${CONTENTFUL_TOKEN}`,
   },
 };
 
 export const getPostList = async (tag?: string, category?: string) => {
-  const posts = await axios.get(POSTS_API_ENDPOINT, axiosAuthHeader);
-  const postSummaries = normalizePostSummariesData(posts.data);
-  return postSummaries;
-};
-
-export const getPost = async (id: string) => {
-  const post = await axios.get(`${POSTS_API_ENDPOINT}/${id}`, axiosAuthHeader);
-  const postDetail = normalizePostDetailData(post.data);
-
-  const postBody: any = await axios.get(
-    `${POSTS_API_ENDPOINT}/${id}/comments`,
+  const postList = await axios.get(
+    `${CONETNTFUL_API_ENDPOINT}?content_type=postList`,
     axiosAuthHeader
   );
 
-  postDetail.body = postBody.data[0].body;
-  return postDetail;
+  console.log(postList.data);
+
+  const post = await axios.get(
+    `${CONETNTFUL_API_ENDPOINT}/3jxSdYa9bcTQLvjsiSKukm`,
+    axiosAuthHeader
+  );
+  console.log(post.data);
+
+  return postList.data;
+};
+
+export const getPost = async (id: string) => {
+  const post = await axios.get(
+    `${CONETNTFUL_API_ENDPOINT}/${id}`,
+    axiosAuthHeader
+  );
+  console.log(post.data);
+  return post.data;
 };

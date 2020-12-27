@@ -2,10 +2,10 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-import { PostSummary } from "../types";
+import { PostList } from "../types";
 
 type OwnProps = {
-  postSummary: PostSummary;
+  postSummary: PostList;
 };
 
 export const PostLink: React.FC<OwnProps> = ({ postSummary }) => {
@@ -16,7 +16,7 @@ export const PostLink: React.FC<OwnProps> = ({ postSummary }) => {
       </StyledPostTitle>
       <StyledPostDateTagContainer>
         <StyledPostPublishDate>{postSummary.publishDate}</StyledPostPublishDate>
-        {postSummary.tags.map((tag) => (
+        {(postSummary.tags || []).map((tag) => (
           <StyledPostTag key={tag} to={`/tag/${encodeURI(tag)}`}>
             #{tag}
           </StyledPostTag>

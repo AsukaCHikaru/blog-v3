@@ -34,7 +34,10 @@ const config: webpack.Configuration = {
   plugins: [
     new webpack.DefinePlugin({
       "process.env": {
-        GITHUB_TOKEN: JSON.stringify(process.env.GITHUB_TOKEN || ""),
+        CONTENTFUL_TOKEN: JSON.stringify(process.env.CONTENTFUL_TOKEN || ""),
+        CONTENTFUL_SPACE_ID: JSON.stringify(
+          process.env.CONTENTFUL_SPACE_ID || ""
+        ),
       },
     }),
   ],

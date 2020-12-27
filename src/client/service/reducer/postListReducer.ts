@@ -1,9 +1,9 @@
-import { PostSummary } from "../../types";
+import { Post, PostList } from "../../hooks/api/types";
 import { StoreStatus, STORE_STATUS, BaseState } from ".";
 import { PostListAction, PostListActionTypes } from "../action/postListActions";
 
 export interface PostListState extends BaseState {
-  list: PostSummary[];
+  list: PostList;
 }
 
 const initialState: PostListState = {
@@ -19,10 +19,15 @@ export const postListReducer = (
     case PostListActionTypes.FETCHING_POST_LIST:
       return { ...state, status: STORE_STATUS.PENDING };
     case PostListActionTypes.FETCHED_POST_LIST:
+      const postList: PostList = action.payload.data.items.map((item) => {
+        const { post, ...rest } = item.fields;
+        return { ...rest, id: item.sys.id };
+      });
+
       return {
         ...state,
         status: STORE_STATUS.SUCCEED,
-        list: action.payload.data,
+        list: postList,
       };
     default:
       return state;

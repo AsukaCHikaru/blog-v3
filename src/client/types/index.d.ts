@@ -1,4 +1,4 @@
-export type PostSummary = {
+export type PostList = {
   author: string;
   title: string;
   body: string;

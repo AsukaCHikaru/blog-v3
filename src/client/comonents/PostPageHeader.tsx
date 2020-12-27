@@ -2,10 +2,10 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-import { PostSummary } from "../types";
+import { PostList } from "../types";
 
 type OwnProps = {
-  postSummary: PostSummary;
+  postSummary: PostList;
 };
 
 export const PostPageHeader: React.FC<OwnProps> = ({ postSummary }) => {

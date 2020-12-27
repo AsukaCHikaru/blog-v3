@@ -1,7 +1,8 @@
 import { AxiosError } from "axios";
 import { Action } from "redux";
+import { ContentfulEntries, PostListContentType } from "../../hooks/api/types";
 
-import { PostSummary } from "../../types";
+import { PostList } from "../../types";
 
 export enum PostListActionTypes {
   FETCHING_POST_LIST = "FETCHING_POST_LIST",
@@ -18,7 +19,7 @@ export const fetchingPostList = (): FetchingPostList => {
 };
 
 interface FetchedPostListPayloadType {
-  data: PostSummary[];
+  data: ContentfulEntries<PostListContentType>;
   error?: AxiosError;
 }
 

@@ -2,7 +2,7 @@ import {
   GithubIssue,
   GitHubIssueResponse,
   PostCategory,
-  PostSummary,
+  PostList,
 } from "./types";
 
 export const readPostMetaData = (postBody: string) => {
@@ -28,7 +28,7 @@ export const readPostMetaData = (postBody: string) => {
 };
 
 export const normalizePostSummariesData = (rawData: GitHubIssueResponse) => {
-  const postSummaries: PostSummary[] = [];
+  const postSummaries: PostList[] = [];
 
   rawData.forEach((postData: GithubIssue) => {
     const { author, publishDate, path, tags, category } = readPostMetaData(
@@ -37,7 +37,7 @@ export const normalizePostSummariesData = (rawData: GitHubIssueResponse) => {
     const postSummaryBodyRaw = /-start-\r\n(.+)/.exec(postData.body);
     const postSummaryBody = postSummaryBodyRaw ? postSummaryBodyRaw[1] : "";
 
-    const postSummary: PostSummary = {
+    const postSummary: PostList = {
       author,
       title: postData.title,
       body: postSummaryBody,
@@ -58,7 +58,7 @@ export const normalizePostDetailData = (rawData: GithubIssue) => {
     rawData.body
   );
 
-  const postSummary: PostSummary = {
+  const postSummary: PostList = {
     author,
     title: rawData.title,
     body: "",
