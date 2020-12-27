@@ -45,7 +45,9 @@ export const PostListPage: React.FC<PostListPageProps> = ({
     if (tag) {
       return {
         ...postList,
-        list: postList.list.filter((post) => post.tags.includes(tag)),
+        list: postList.list.filter(
+          (post) => post.tags && post.tags.includes(tag)
+        ),
       };
     }
     if (category) {

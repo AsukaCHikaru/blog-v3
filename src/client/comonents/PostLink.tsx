@@ -2,10 +2,10 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-import { PostList } from "../types";
+import { PostList } from "../hooks/api/types";
 
 type OwnProps = {
-  postSummary: PostList;
+  postSummary: PostList[number];
 };
 
 export const PostLink: React.FC<OwnProps> = ({ postSummary }) => {

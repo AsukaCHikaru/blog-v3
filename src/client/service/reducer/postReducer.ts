@@ -1,7 +1,6 @@
-import { PostDetail } from "../../types";
-import { StoreStatus, STORE_STATUS, BaseState } from ".";
+import { STORE_STATUS, BaseState } from ".";
 import { PostAction, PostActionTypes } from "../action/postActions";
-import { Post, ContentfulRichTextContent } from "../../hooks/api/types";
+import { ContentfulRichTextContent } from "../../hooks/api/types";
 
 export interface PostState extends BaseState {
   data: Record<string, ContentfulRichTextContent["content"]>;

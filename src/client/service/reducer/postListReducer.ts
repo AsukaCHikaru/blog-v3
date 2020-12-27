@@ -1,5 +1,5 @@
-import { Post, PostList } from "../../hooks/api/types";
-import { StoreStatus, STORE_STATUS, BaseState } from ".";
+import { PostList } from "../../hooks/api/types";
+import { STORE_STATUS, BaseState } from "./index";
 import { PostListAction, PostListActionTypes } from "../action/postListActions";
 
 export interface PostListState extends BaseState {
