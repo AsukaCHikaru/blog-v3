@@ -12,6 +12,8 @@ export const PostPageLayout: React.FC<OwnProps> = ({ children }) => {
 };
 
 const StyledContainer = styled.div`
+  scroll-behavior: auto;
+
   margin: 25px 50px;
 
   @media all and (max-width: 1260px) {

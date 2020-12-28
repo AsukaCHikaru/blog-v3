@@ -73,7 +73,6 @@ export const PostBody: React.FC<OwnProps> = ({ postBody }) => {
       </StyledWrapper>
     );
   }
-  console.log(postBody);
 
   return (
     <StyledWrapper>

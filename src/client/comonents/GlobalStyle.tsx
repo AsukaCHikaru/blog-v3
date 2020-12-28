@@ -25,7 +25,7 @@ const resetCss = css`
     margin: 0;
   }
   html {
-    scroll-behavior: smooth;
+    scroll-behavior: auto;
   }
   body {
     min-height: 100vh;
