@@ -10,6 +10,7 @@ import { PostPageFooter } from "../../comonents/PostPageFooter";
 import { PostBody } from "../../comonents/PostBody";
 import { PostPageLayout } from "../../comonents/Layout";
 import { Helmet } from "../../comonents/Helmet";
+import { useScrollTop } from "../../hooks/useScrollTop";
 
 interface OwnProps {}
 
@@ -30,6 +31,8 @@ export const PostPage: React.FC<PostPageProps> = ({
   const { postPath } = useParams<Params>();
   const postList = useSelector((state: RootState) => state.postList);
   const post = useSelector((state: RootState) => state.post);
+
+  useScrollTop();
 
   React.useEffect(() => {
     callFetchPostList();

@@ -9,6 +9,7 @@ import { PostListPageHeader } from "../../comonents/PostListPageHeader";
 import { Footer } from "../../comonents/Footer";
 import { PostListPageLayout } from "../../comonents/Layout";
 import { Helmet } from "../../comonents/Helmet";
+import { useScrollTop } from "../../hooks/useScrollTop";
 
 interface OwnProps {}
 interface ConnectedDispatchProps {
@@ -24,19 +25,14 @@ interface Params {
 export const PostListPage: React.FC<PostListPageProps> = ({
   callFetchPostList,
 }) => {
-  const history = useHistory();
   const { tag, category } = useParams<Params>();
   const postList = useSelector((state: RootState) => state.postList);
+
+  useScrollTop();
 
   React.useEffect(() => {
     if (postList.status === STORE_STATUS.IDLE) callFetchPostList();
   }, []);
-
-  React.useEffect(() => {
-    if (history.action === "PUSH") {
-      window.scrollTo(0, 0);
-    }
-  }, [history]);
 
   const filteredPostList = React.useMemo(() => {
     if (!tag && !category) {
