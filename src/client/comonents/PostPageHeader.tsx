@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { PostCommonContentType } from "../hooks/api/types";
 
 import { PostList } from "../types";
+import { dateParser } from "../utils/utils";
 
 type OwnProps = {
   postSummary: PostCommonContentType;
@@ -14,7 +15,9 @@ export const PostPageHeader: React.FC<OwnProps> = ({ postSummary }) => {
     <StyledContainer>
       <StyledTitle>{postSummary.title}</StyledTitle>
       <StyledInfoContainer>
-        <StyledPublishDate>{postSummary.publishDate}</StyledPublishDate>
+        <StyledPublishDate>
+          {dateParser(postSummary.publishDate)}
+        </StyledPublishDate>
         {(postSummary.tags || []).map((tag) => (
           <StyledTag key={tag} to={`/tag/${tag}`}>
             #{tag}

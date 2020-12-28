@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 import { PostList } from "../hooks/api/types";
+import { dateParser } from "../utils/utils";
 
 type OwnProps = {
   postSummary: PostList[number];
@@ -15,7 +16,9 @@ export const PostLink: React.FC<OwnProps> = ({ postSummary }) => {
         {postSummary.title}
       </StyledPostTitle>
       <StyledPostDateTagContainer>
-        <StyledPostPublishDate>{postSummary.publishDate}</StyledPostPublishDate>
+        <StyledPostPublishDate>
+          {dateParser(postSummary.publishDate)}
+        </StyledPostPublishDate>
         {(postSummary.tags || []).map((tag) => (
           <StyledPostTag key={tag} to={`/tag/${encodeURI(tag)}`}>
             #{tag}
