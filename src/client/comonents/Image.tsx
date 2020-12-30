@@ -23,5 +23,5 @@ const StyledImgWrapper = styled.div`
 
 const StyledImage = styled.img`
   width: 80%;
-  margin: 0 auto;
+  margin: 0 auto 27px;
 `;

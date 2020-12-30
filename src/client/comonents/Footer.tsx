@@ -1,5 +1,4 @@
 import * as React from "react";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 type OwnProps = {};
@@ -29,4 +28,8 @@ const StyledFooter = styled.footer`
 
 const StyledFooterContent = styled.span``;
 
-const StyledFooterLink = styled.a``;
+const StyledFooterLink = styled.a`
+  &:hover {
+    text-decoration: underline;
+  }
+`;

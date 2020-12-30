@@ -61,6 +61,11 @@ const StyledCatogry = styled(Link)<{ selected: boolean }>`
   text-decoration: ${(props) => (props.selected ? "underline" : "none")};
 
   border-left: solid 1px #131313;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
   &:first-of-type {
     border-left: none;
     padding-left: 0;

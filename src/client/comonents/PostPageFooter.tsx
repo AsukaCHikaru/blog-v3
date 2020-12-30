@@ -33,6 +33,11 @@ const StyledCategory = styled(Link)`
   font-size: 18px;
   font-family: "Courier New", Courier, "Noto Sans JP", monospace;
   border-left: solid 1px #131313;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
   &:first-of-type {
     border-left: none;
     padding-left: 0;
