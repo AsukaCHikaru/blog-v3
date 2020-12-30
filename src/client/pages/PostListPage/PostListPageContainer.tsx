@@ -3,7 +3,7 @@ import { Action } from "redux";
 import { ThunkDispatch } from "redux-thunk";
 
 import { RootState } from "../../service/reducer";
-import { callFetchPostList } from "../../service/thunk/postListThunk";
+import { fetchPostList } from "../../service/thunk/postListThunk";
 import { PostListPage } from "./PostListPage";
 
 const mapStateToProps = (state: RootState) => {
@@ -14,7 +14,7 @@ const mapStateToProps = (state: RootState) => {
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<{}, {}, Action>) => {
   return {
-    callFetchPostList: () => dispatch(callFetchPostList()),
+    fetchPostList: () => dispatch(fetchPostList()),
   };
 };
 

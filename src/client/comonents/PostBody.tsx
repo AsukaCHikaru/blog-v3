@@ -1,7 +1,9 @@
 import * as React from "react";
 import styled from "styled-components";
 import * as marked from "marked";
+
 import { ContentfulRichTextContent } from "../hooks/api/types";
+import { Image } from "./Image";
 
 type OwnProps = {
   postBody: string | ContentfulRichTextContent["content"];
@@ -56,6 +58,8 @@ const postBodyParser = (
       );
     case "blockquote":
       return <blockquote key={`content-${index}`}>{body}</blockquote>;
+    case "embedded-asset-block":
+      return <Image assetId={content.data.target?.sys.id || ""} />;
     default:
       return null;
   }

@@ -115,7 +115,7 @@ type ContentfulSpace = {
 };
 
 type ContentfulRichTextDataTarget = {
-  sys: ContentfulSys;
+  sys: ContntfulLinkSys;
 };
 
 type ContentfulRichTextData = {
@@ -141,7 +141,8 @@ export type ContentfulRichTextNodeType =
   | "blockquote"
   | "hr"
   | "embedded-entry-block"
-  | "embedded-entry-inline";
+  | "embedded-entry-inline"
+  | "embedded-asset-block";
 
 export type ContentfulRichTextContent = {
   data: ContentfulRichTextData;

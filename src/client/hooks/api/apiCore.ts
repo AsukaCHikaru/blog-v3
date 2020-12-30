@@ -9,17 +9,25 @@ const axiosAuthHeader: AxiosRequestConfig = {
 };
 
 export const getPostList = async (tag?: string, category?: string) => {
-  const postList = await axios.get(
-    `${CONETNTFUL_API_ENDPOINT}?content_type=postList`,
+  const response = await axios.get(
+    `${CONETNTFUL_API_ENDPOINT}/entries?content_type=postList`,
     axiosAuthHeader
   );
-  return postList.data;
+  return response.data;
 };
 
 export const getPost = async (id: string) => {
-  const post = await axios.get(
-    `${CONETNTFUL_API_ENDPOINT}/${id}`,
+  const response = await axios.get(
+    `${CONETNTFUL_API_ENDPOINT}/entries/${id}`,
     axiosAuthHeader
   );
-  return post.data;
+  return response.data;
+};
+
+export const getAsset = async (id: string) => {
+  const response = await axios.get(
+    `${CONETNTFUL_API_ENDPOINT}/assets/${id}`,
+    axiosAuthHeader
+  );
+  return response.data;
 };

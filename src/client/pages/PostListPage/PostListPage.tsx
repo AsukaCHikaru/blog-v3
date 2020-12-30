@@ -13,7 +13,7 @@ import { useScrollTop } from "../../hooks/useScrollTop";
 
 interface OwnProps {}
 interface ConnectedDispatchProps {
-  callFetchPostList: () => void;
+  fetchPostList: () => void;
 }
 interface PostListPageProps extends OwnProps, ConnectedDispatchProps {}
 
@@ -23,7 +23,7 @@ interface Params {
 }
 
 export const PostListPage: React.FC<PostListPageProps> = ({
-  callFetchPostList,
+  fetchPostList,
 }) => {
   const { tag, category } = useParams<Params>();
   const postList = useSelector((state: RootState) => state.postList);
@@ -31,7 +31,7 @@ export const PostListPage: React.FC<PostListPageProps> = ({
   useScrollTop();
 
   React.useEffect(() => {
-    if (postList.status === STORE_STATUS.IDLE) callFetchPostList();
+    if (postList.status === STORE_STATUS.IDLE) fetchPostList();
   }, []);
 
   const filteredPostList = React.useMemo(() => {

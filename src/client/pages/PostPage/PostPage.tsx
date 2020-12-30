@@ -15,8 +15,9 @@ import { useScrollTop } from "../../hooks/useScrollTop";
 interface OwnProps {}
 
 interface ConnectedDispatchProps {
-  callFetchPost: (postId: string) => void;
-  callFetchPostList: () => void;
+  fetchPost: (postId: string) => void;
+  fetchPostList: () => void;
+  fetchAsset: (assetId: string) => void;
 }
 interface PostPageProps extends OwnProps, ConnectedDispatchProps {}
 
@@ -25,8 +26,9 @@ interface Params {
 }
 
 export const PostPage: React.FC<PostPageProps> = ({
-  callFetchPost,
-  callFetchPostList,
+  fetchPost,
+  fetchPostList,
+  fetchAsset,
 }) => {
   const { postPath } = useParams<Params>();
   const postList = useSelector((state: RootState) => state.postList);
@@ -35,19 +37,30 @@ export const PostPage: React.FC<PostPageProps> = ({
   useScrollTop();
 
   React.useEffect(() => {
-    callFetchPostList();
+    fetchPostList();
   }, []);
 
   const postId = React.useMemo(() => {
     return postList.list.find((post) => post.path === postPath)?.id;
   }, [postList]);
 
+  React.useEffect(() => {
+    if (!postId) {
+      return;
+    }
+    post?.data[postId]?.forEach((content) => {
+      if (content.nodeType === "embedded-asset-block" && content.data.target) {
+        fetchAsset(content.data.target.sys.id);
+      }
+    });
+  }, [post]);
+
   const postSummary = React.useMemo(() => {
     return postList.list.find((post) => post.id === postId);
   }, [postId, post]);
 
   React.useEffect(() => {
-    if (postId && !post.data[postId]) callFetchPost(postId);
+    if (postId && !post.data[postId]) fetchPost(postId);
   }, [postId]);
 
   if (!postId || !postSummary) {

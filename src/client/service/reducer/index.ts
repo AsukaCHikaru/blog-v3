@@ -1,5 +1,6 @@
 import { AxiosError } from "axios";
 import { combineReducers, Reducer } from "redux";
+import { assetReducer, AssetState } from "./assetReducer";
 import { postListReducer, PostListState } from "./postListReducer";
 import { postReducer, PostState } from "./postReducer";
 
@@ -19,9 +20,11 @@ export interface BaseState {
 export interface RootState {
   postList: PostListState;
   post: PostState;
+  asset: AssetState;
 }
 
 export const rootReducer: Reducer<RootState> = combineReducers({
   postList: postListReducer,
   post: postReducer,
+  asset: assetReducer,
 });
