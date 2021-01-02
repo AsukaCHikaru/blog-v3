@@ -9,7 +9,8 @@ export interface PostCommonContentType {
 }
 
 export interface PostListContentType extends PostCommonContentType {
-  preview: string;
+  preview: ContentfulRichTextContent;
+  description: string;
   post: {
     sys: ContntfulLinkSys;
   };
@@ -20,7 +21,8 @@ export interface PostContentType extends PostCommonContentType {
 }
 
 export interface PostSummary extends PostCommonContentType {
-  preview: string;
+  preview: ContentfulRichTextContent;
+  description: string;
   id: string;
 }
 

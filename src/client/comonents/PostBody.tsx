@@ -1,26 +1,15 @@
 import * as React from "react";
 import styled from "styled-components";
-import * as marked from "marked";
 
 import { ContentfulRichTextContent } from "../hooks/api/types";
 import { postBodyParser } from "../utils/postBodyParser";
 
 type OwnProps = {
-  postBody: string | ContentfulRichTextContent["content"];
+  postBody: ContentfulRichTextContent["content"];
 };
 
 export const PostBody: React.FC<OwnProps> = ({ postBody }) => {
   if (!postBody) return null;
-  if (typeof postBody === "string") {
-    const parsedPostBody = React.useMemo(() => {
-      return marked(postBody);
-    }, [postBody]);
-    return (
-      <StyledWrapper>
-        <StyledBody dangerouslySetInnerHTML={{ __html: parsedPostBody }} />
-      </StyledWrapper>
-    );
-  }
 
   return (
     <StyledWrapper>
