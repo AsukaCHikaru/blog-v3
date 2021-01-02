@@ -1,19 +1,26 @@
 import * as React from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
 
 type OwnProps = {
   selectedCategory?: string;
 };
 
+interface Params {
+  tag?: string;
+  category?: string;
+}
+
 export const PostListPageHeader: React.FC<OwnProps> = ({
   selectedCategory,
 }) => {
+  const { tag } = useParams<Params>();
+
   return (
     <StyledContainer>
       <StyledTitle to="/">The work is undone.</StyledTitle>
       <StyledCategoryContainer>
-        <StyledCatogry to="/" selected={selectedCategory === undefined}>
+        <StyledCatogry to="/" selected={selectedCategory === undefined && !tag}>
           ALL
         </StyledCatogry>
         <StyledCatogry
@@ -34,6 +41,7 @@ export const PostListPageHeader: React.FC<OwnProps> = ({
         >
           OTHERS
         </StyledCatogry>
+        {tag && <StyledSelectedTag>#{tag}</StyledSelectedTag>}
       </StyledCategoryContainer>
     </StyledContainer>
   );
@@ -70,4 +78,14 @@ const StyledCatogry = styled(Link)<{ selected: boolean }>`
     border-left: none;
     padding-left: 0;
   }
+`;
+
+const StyledSelectedTag = styled.span`
+  padding: 0 10px;
+  font-family: "Courier New", Courier, "Noto Sans JP", monospace;
+  font-size: 20px;
+  font-weight: 100;
+  color: #131313;
+  text-decoration: underline;
+  border-left: solid 1px #131313;
 `;
