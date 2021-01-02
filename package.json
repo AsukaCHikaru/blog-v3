@@ -5,9 +5,9 @@
   "scripts": {
     "build:client:dev": "webpack --mode development --config webpack.client.config.ts --watch",
     "build:server:dev": "webpack --mode development --config webpack.server.config.ts --watch",
-    "build": "webpack --mode production --config webpack.client.config.ts && webpack --mode development --config webpack.server.config.ts",
+    "build": "webpack --mode production --config webpack.client.config.ts && webpack --mode production --config webpack.server.config.ts",
     "start:dev": "npm run build:dev && ts-node-dev dist/server/server.bundle.js",
-    "start": "npm run build && ts-node-dev dist/server/server.bundle.js",
+    "start": "npm run build && ts-node dist/server/server.bundle.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

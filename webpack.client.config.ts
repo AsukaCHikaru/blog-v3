@@ -6,7 +6,7 @@ const config: webpack.Configuration = {
   entry: "./src/client/index.tsx",
   context: resolve(__dirname),
   output: {
-    filename: "client.bundle.js",
+    filename: "[name].bundle.js",
     path: resolve(__dirname, "dist", "static"),
   },
   module: {
@@ -27,6 +27,18 @@ const config: webpack.Configuration = {
         ],
       },
     ],
+  },
+  optimization: {
+    minimize: true,
+    splitChunks: {
+      cacheGroups: {
+        commons: {
+          test: /node_modules/,
+          name: "vendor",
+          chunks: "initial",
+        },
+      },
+    },
   },
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".json"],

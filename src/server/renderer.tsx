@@ -45,7 +45,7 @@ export const getFullHTML = (htmlBody: string, styleTags: string) => {
     <!DOCTYPE html>
     <html>
       <head>
-        <meta name="viewport" content="width=content-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         ${styleTags}
         <style>
           @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700;900&display=swap');
@@ -54,7 +54,8 @@ export const getFullHTML = (htmlBody: string, styleTags: string) => {
       </head>
       <body>
         <div id="app-root">${htmlBody}</div>
-        <script src="client.bundle.js" type="text/javascript" charset="utf-8"></script>
+        <script src="main.bundle.js" type="text/javascript" charset="utf-8"></script>
+        <script src="vendor.bundle.js" type="text/javascript" charset="utf-8"></script>
       </body>
     </html>
   `;
