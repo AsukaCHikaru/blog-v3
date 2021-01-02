@@ -12,18 +12,12 @@ export const PostPageLayout: React.FC<OwnProps> = ({ children }) => {
 };
 
 const StyledContainer = styled.div`
-  scroll-behavior: auto;
+  max-width: 800px;
+  margin: 25px;
 
-  margin: 25px 50px;
-
-  @media all and (max-width: 1260px) {
-    margin: 25px 40px;
-  }
-  @media all and (max-width: 768px) {
-    margin: 25px 30px;
-  }
-  @media all and (max-width: 420px) {
-    margin: 25px;
+  @media (max-width: 375px) {
+    max-width: 350px;
+    margin: 25px 10px;
   }
 `;
 

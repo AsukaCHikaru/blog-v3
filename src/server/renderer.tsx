@@ -45,6 +45,7 @@ export const getFullHTML = (htmlBody: string, styleTags: string) => {
     <!DOCTYPE html>
     <html>
       <head>
+        <meta name="viewport" content="width=content-width, initial-scale=1">
         ${styleTags}
         <style>
           @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700;900&display=swap');
