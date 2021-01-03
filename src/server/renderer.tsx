@@ -8,8 +8,12 @@ import { App } from "../client/App";
 
 export const renderer = (app: Express.Application) => {
   app.get("*", (req: Express.Request, res: Express.Response) => {
-    if (/client\.bundle\.js/.test(req.url)) {
-      res.redirect("/client.bundle.js");
+    if (/main\.bundle\.js/.test(req.url)) {
+      res.redirect("/main.bundle.js");
+      return;
+    }
+    if (/vendor\.bundle\.js/.test(req.url)) {
+      res.redirect("/vendor.bundle.js");
       return;
     }
     if (/favicon\.ico/.test(req.url)) {
