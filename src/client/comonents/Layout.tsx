@@ -12,12 +12,12 @@ export const PostPageLayout: React.FC<OwnProps> = ({ children }) => {
 };
 
 const StyledContainer = styled.div`
-  max-width: 800px;
-  margin: 25px;
+  max-width: 720px;
+  margin: 43px auto;
 
   @media (max-width: 375px) {
-    max-width: 350px;
-    margin: 25px 10px;
+    max-width: 330px;
+    margin: 49px 22px;
   }
 `;
 

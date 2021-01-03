@@ -69,7 +69,7 @@ const resetCss = css`
 export const GlobalStyle = createGlobalStyle`
   ${resetCss};
   body {
-    background-color: #eeeeee;
+    background-color: #eaeaea;
     color: #131313; 
   }
 
@@ -80,11 +80,11 @@ export const GlobalStyle = createGlobalStyle`
 
   code {
     font-family: SFMono-Regular,Consolas,Roboto Mono,Droid Sans Mono,Liberation Mono,Menlo,Courier,monospace;
-    background-color: #dddddd;
+    background-color: #dadada;
   }
 
   pre {
-    background-color: #dddddd;
+    background-color: #dadada;
   }
   
   a {
