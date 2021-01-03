@@ -24,13 +24,6 @@ const StyledWrapper = styled.div``;
 
 const StyledBody = styled.div`
   p {
-    & code {
-      padding: 0 5px;
-      display: inline-block;
-      font-size: 15px;
-      color: #363636;
-    }
-
     & img {
       margin: 0 auto;
       max-width: 90%;

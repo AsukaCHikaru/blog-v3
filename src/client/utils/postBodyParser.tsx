@@ -18,7 +18,12 @@ export const postBodyParser = (
         return content.value;
       }
       if (content.marks[0].type === "code") {
-        return <code>{content.value}</code>;
+        console.log(content.value, /\r?\n|\r/.test(content.value));
+
+        if (/\r?\n|\r/.test(content.value)) {
+          return <StyledLongCode>{content.value}</StyledLongCode>;
+        }
+        return <StyledCode>{content.value}</StyledCode>;
       }
     }
     return null;
@@ -104,4 +109,18 @@ const StyledA = styled.a`
   &:hover {
     text-decoration: underline;
   }
+`;
+
+const StyledCode = styled.code`
+  padding: 0 5px;
+  display: inline-block;
+  font-size: 15px;
+  color: #363636;
+`;
+
+const StyledLongCode = styled(StyledCode)`
+  padding: 20px;
+  width: 100%;
+  overflow-x: scroll;
+  line-height: 1.5;
 `;
