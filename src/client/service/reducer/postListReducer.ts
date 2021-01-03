@@ -24,6 +24,8 @@ export const postListReducer = (
         return { ...rest, id: item.fields.post.sys.id };
       });
 
+      postList.sort((prev, next) => (prev.no < next.no ? 1 : -1));
+
       return {
         ...state,
         status: STORE_STATUS.SUCCEED,

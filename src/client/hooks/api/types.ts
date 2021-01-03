@@ -6,6 +6,7 @@ export interface PostCommonContentType {
   publishDate: string;
   tags?: string[];
   title: string;
+  no: number;
 }
 
 export interface PostListContentType extends PostCommonContentType {
