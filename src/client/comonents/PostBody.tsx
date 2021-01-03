@@ -24,11 +24,6 @@ const StyledWrapper = styled.div``;
 
 const StyledBody = styled.div`
   p {
-    margin-bottom: 27px;
-    font-size: 18px;
-    line-height: 2;
-    white-space: pre-wrap;
-
     & code {
       padding: 0 5px;
       display: inline-block;
@@ -48,33 +43,6 @@ const StyledBody = styled.div`
       & iframe {
         border: none;
       }
-    }
-  }
-
-  a {
-    color: #0d69da;
-
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-
-  h1 {
-    font-size: 40px;
-    line-height: 2;
-  }
-  h2 {
-    font-size: 30px;
-    line-height: 2;
-  }
-  h3 {
-    font-size: 25px;
-    line-height: 2;
-  }
-
-  li {
-    & p {
-      margin-bottom: 0;
     }
   }
 

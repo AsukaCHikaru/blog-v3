@@ -1,6 +1,12 @@
 import * as React from "react";
+import styled from "styled-components";
+
 import { Image } from "../comonents/Image";
 import { ContentfulRichTextContent } from "../hooks/api/types";
+
+type OwnProps = {
+  children: (string | JSX.Element | null)[];
+};
 
 export const postBodyParser = (
   content: ContentfulRichTextContent,
@@ -22,19 +28,19 @@ export const postBodyParser = (
   );
   switch (content.nodeType) {
     case "paragraph":
-      return <p key={`content-${index}`}>{body}</p>;
+      return <StyledP key={`content-${index}`}>{body}</StyledP>;
     case "heading-1":
       return <h1 key={`content-${index}`}>{body}</h1>;
     case "heading-2":
-      return <h2 key={`content-${index}`}>{body}</h2>;
+      return <StyledH2 key={`content-${index}`}>{body}</StyledH2>;
     case "heading-3":
-      return <h3 key={`content-${index}`}>{body}</h3>;
+      return <StyledH3 key={`content-${index}`}>{body}</StyledH3>;
     case "unordered-list":
       return <ul key={`content-${index}`}>{body}</ul>;
     case "ordered-list":
       return <ol key={`content-${index}`}>{body}</ol>;
     case "list-item":
-      return <li key={`content-${index}`}>{body}</li>;
+      return <StyledLi key={`content-${index}`}>{body}</StyledLi>;
     case "hyperlink":
       if (content.data.uri && /www\.youtube\.com/.test(content.data.uri)) {
         const youtubeUri = content.data.uri.replace(/watch\?v=/, "embed/");
@@ -45,9 +51,9 @@ export const postBodyParser = (
         );
       }
       return (
-        <a href={content.data.uri} key={`content-${index}`}>
+        <StyledA href={content.data.uri} key={`content-${index}`}>
           {body}
-        </a>
+        </StyledA>
       );
     case "blockquote":
       return <blockquote key={`content-${index}`}>{body}</blockquote>;
@@ -57,3 +63,45 @@ export const postBodyParser = (
       return null;
   }
 };
+
+const StyledP = styled.p`
+  font-size: 18px;
+  line-height: 32px;
+  margin-bottom: 14px;
+  white-space: pre-wrap;
+`;
+
+const StyledH2 = styled.h2`
+  font-size: 30px;
+  line-height: 2;
+  font-weight: 700;
+
+  @media (max-width: 375px) {
+    font-size: 25px;
+  }
+`;
+
+const StyledH3 = styled.h3`
+  font-size: 24px;
+  line-height: 40px;
+  font-weight: 700;
+
+  @media (max-width: 375px) {
+    font-size: 21px;
+    line-height: 30px;
+  }
+`;
+
+const StyledLi = styled.li`
+  & p {
+    margin-bottom: 0;
+  }
+`;
+
+const StyledA = styled.a`
+  color: #0d69da;
+
+  &:hover {
+    text-decoration: underline;
+  }
+`;
