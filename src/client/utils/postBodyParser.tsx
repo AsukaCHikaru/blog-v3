@@ -72,7 +72,7 @@ export const postBodyParser = (
 const StyledP = styled.p`
   font-size: 18px;
   line-height: 32px;
-  margin-bottom: 14px;
+  margin-bottom: 32px;
   white-space: pre-wrap;
 `;
 
