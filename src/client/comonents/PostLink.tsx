@@ -2,12 +2,18 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-import { PostList } from "../hooks/api/types";
+import { PostLanguage, PostList } from "../hooks/api/types";
 import { dateParser } from "../utils/utils";
 
 type OwnProps = {
   postSummary: PostList[number];
 };
+
+const postLanLabelText: Record<PostLanguage, string> = {
+  enUS: "English",
+  zhTW: "中文",
+  jaJP: "日本語",
+} as const;
 
 export const PostLink: React.FC<OwnProps> = ({ postSummary }) => {
   return (
@@ -19,6 +25,9 @@ export const PostLink: React.FC<OwnProps> = ({ postSummary }) => {
         <StyledPostPublishDate>
           {dateParser(postSummary.publishDate)}
         </StyledPostPublishDate>
+        <StyledLan to={`/post/${postSummary.path}`}>
+          {postLanLabelText[postSummary.language]}
+        </StyledLan>
       </StyledPostDateLanContainer>
       {postSummary.tags && (
         <StyledPostTagContainer>
@@ -73,6 +82,15 @@ const StyledPostPublishDate = styled.span`
 
   @media (max-width: 375px) {
     margin-right: 10px;
+    font-size: 15px;
+  }
+`;
+
+const StyledLan = styled(Link)`
+  font-family: "Noto Serif JP", serif;
+  font-size: 20px;
+
+  @media (max-width: 375px) {
     font-size: 15px;
   }
 `;
