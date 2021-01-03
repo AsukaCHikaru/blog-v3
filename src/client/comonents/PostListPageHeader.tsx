@@ -19,30 +19,35 @@ export const PostListPageHeader: React.FC<OwnProps> = ({
   return (
     <StyledContainer>
       <StyledTitle to="/">The work is undone.</StyledTitle>
-      <StyledCategoryContainer>
-        <StyledCatogry to="/" selected={selectedCategory === undefined && !tag}>
-          ALL
-        </StyledCatogry>
-        <StyledCatogry
-          to="/category/gaming"
-          selected={selectedCategory === "gaming"}
-        >
-          GAMING
-        </StyledCatogry>
-        <StyledCatogry
-          to="/category/programming"
-          selected={selectedCategory === "programming"}
-        >
-          PROGRAMMING
-        </StyledCatogry>
-        <StyledCatogry
-          to="/category/others"
-          selected={selectedCategory === "others"}
-        >
-          OTHERS
-        </StyledCatogry>
+      <StyledCategoryTagContainer>
+        <StyledCategoryContainer>
+          <StyledCatogry
+            to="/"
+            selected={selectedCategory === undefined && !tag}
+          >
+            ALL
+          </StyledCatogry>
+          <StyledCatogry
+            to="/category/gaming"
+            selected={selectedCategory === "gaming"}
+          >
+            GAMING
+          </StyledCatogry>
+          <StyledCatogry
+            to="/category/programming"
+            selected={selectedCategory === "programming"}
+          >
+            PROGRAMMING
+          </StyledCatogry>
+          <StyledCatogry
+            to="/category/others"
+            selected={selectedCategory === "others"}
+          >
+            OTHERS
+          </StyledCatogry>
+        </StyledCategoryContainer>
         {tag && <StyledSelectedTag>#{tag}</StyledSelectedTag>}
-      </StyledCategoryContainer>
+      </StyledCategoryTagContainer>
     </StyledContainer>
   );
 };
@@ -53,19 +58,38 @@ const StyledContainer = styled.div`
 
 const StyledTitle = styled(Link)`
   font-size: 50px;
+  line-height: 1;
   font-weight: 900;
+
+  @media (max-width: 375px) {
+    font-size: 30px;
+  }
+`;
+
+const StyledCategoryTagContainer = styled.div`
+  margin-top: 20px;
+
+  @media (max-width: 375px) {
+    margin-top: 15px;
+  }
 `;
 
 const StyledCategoryContainer = styled.div`
-  margin-top: 10px;
+  display: inline-block;
+  
+  @media (max-width: 375px) {
+    margin-top: 15p;x
+    display: block;
+  }
 `;
 
 const StyledCatogry = styled(Link)<{ selected: boolean }>`
   padding: 0 10px;
   font-family: "Courier New", Courier, "Noto Sans JP", monospace;
   font-size: 20px;
+  line-height: 1;
   font-weight: 100;
-  color: ${(props) => (props.selected ? "#131313" : "#666666")};
+  color: ${(props) => (props.selected ? "#131313" : "#7a7a7a")};
   text-decoration: ${(props) => (props.selected ? "underline" : "none")};
 
   border-left: solid 1px #131313;
@@ -78,14 +102,25 @@ const StyledCatogry = styled(Link)<{ selected: boolean }>`
     border-left: none;
     padding-left: 0;
   }
+
+  @media (max-width: 375px) {
+    font-size: 15px;
+  }
 `;
 
 const StyledSelectedTag = styled.span`
   padding: 0 10px;
   font-family: "Courier New", Courier, "Noto Sans JP", monospace;
   font-size: 20px;
+  line-height: 1;
   font-weight: 100;
   color: #131313;
   text-decoration: underline;
   border-left: solid 1px #131313;
+
+  @media (max-width: 375px) {
+    font-size: 15px;
+    border: none;
+    padding: 0;
+  }
 `;
