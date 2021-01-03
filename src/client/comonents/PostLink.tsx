@@ -15,46 +15,80 @@ export const PostLink: React.FC<OwnProps> = ({ postSummary }) => {
       <StyledPostTitle to={`/post/${postSummary.path}`}>
         {postSummary.title}
       </StyledPostTitle>
-      <StyledPostDateTagContainer>
+      <StyledPostDateLanContainer>
         <StyledPostPublishDate>
           {dateParser(postSummary.publishDate)}
         </StyledPostPublishDate>
-        {(postSummary.tags || []).map((tag) => (
-          <StyledPostTag key={tag} to={`/tag/${encodeURI(tag)}`}>
-            #{tag}
-          </StyledPostTag>
-        ))}
-      </StyledPostDateTagContainer>
+      </StyledPostDateLanContainer>
+      {postSummary.tags && (
+        <StyledPostTagContainer>
+          {postSummary.tags.map((tag) => (
+            <StyledPostTag key={tag} to={`/tag/${encodeURI(tag)}`}>
+              #{tag}
+            </StyledPostTag>
+          ))}
+        </StyledPostTagContainer>
+      )}
     </StyledContainer>
   );
 };
 
 const StyledContainer = styled.div`
-  margin: 1em 0;
+  margin-bottom: 40px;
 `;
 
 const StyledPostTitle = styled(Link)`
-  font-size: 32px;
-  font-weight: 400;
+  font-size: 35px;
+  line-height: 50px;
+
+  @media (max-width: 375px) {
+    font-size: 25px;
+    line-height: 35px;
+  }
 `;
 
-const StyledPostDateTagContainer = styled.div`
-  color: #343434;
-  font-size: 18px;
+const StyledPostDateLanContainer = styled.div`
+  margin-top: 15px;
+  line-height: 1;
+
+  @media (max-width: 375px) {
+    margin-top: 10px;
+  }
+`;
+
+const StyledPostTagContainer = styled.div`
+  margin-top: 15px;
+  line-height: 1;
+
+  @media (max-width: 375px) {
+    margin-top: 10px;
+  }
 `;
 
 const StyledPostPublishDate = styled.span`
-  margin-right: 10px;
+  margin-right: 15px;
   font-family: "Noto Serif JP", serif;
+  font-size: 20px;
+  color: #7a7a7a;
+
+  @media (max-width: 375px) {
+    margin-right: 10px;
+    font-size: 15px;
+  }
 `;
 
 const StyledPostTag = styled(Link)`
-  margin-right: 10px;
+  margin-right: 15px;
   font-weight: 100;
   font-family: "Noto Sans JP", sans-serif;
-  color: #666666;
+  font-size: 20px;
 
   &:hover {
     text-decoration: underline;
+  }
+
+  @media (max-width: 375px) {
+    margin-right: 10px;
+    font-size: 15px;
   }
 `;
