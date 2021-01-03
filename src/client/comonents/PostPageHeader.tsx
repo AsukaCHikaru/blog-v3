@@ -13,16 +13,20 @@ export const PostPageHeader: React.FC<OwnProps> = ({ postSummary }) => {
   return (
     <StyledContainer>
       <StyledTitle>{postSummary.title}</StyledTitle>
-      <StyledInfoContainer>
+      <StyledDateLanContainer>
         <StyledPublishDate>
           {dateParser(postSummary.publishDate)}
         </StyledPublishDate>
-        {(postSummary.tags || []).map((tag) => (
-          <StyledTag key={tag} to={`/tag/${tag}`}>
-            #{tag}
-          </StyledTag>
-        ))}
-      </StyledInfoContainer>
+      </StyledDateLanContainer>
+      {postSummary.tags && (
+        <StyledTagContainer>
+          {postSummary.tags.map((tag) => (
+            <StyledTag key={tag} to={`/tag/${tag}`}>
+              #{tag}
+            </StyledTag>
+          ))}
+        </StyledTagContainer>
+      )}
     </StyledContainer>
   );
 };
@@ -33,25 +37,54 @@ const StyledContainer = styled.div`
 
 const StyledTitle = styled.h1`
   font-size: 50px;
-  font-weight: 400;
+  line-hegiht: 70px;
+  font-weight: 700;
+
+  @media (max-width: 375px) {
+    font-size: 30px;
+    line-hegiht: 40px;
+  }
 `;
 
-const StyledInfoContainer = styled.div`
+const StyledDateLanContainer = styled.div`
   margin-top: 10px;
-  font-size: 20px;
+  line-height: 1;
+`;
+
+const StyledTagContainer = styled.div`
+  margin-top: 20px;
+  line-height: 1;
+
+  @media (max-width: 375px) {
+    margin-top: 15px;
+  }
 `;
 
 const StyledPublishDate = styled.span`
-  padding-right: 5px;
+  margin-right: 20px;
+  font-size: 20px;
+  color: #7a7a7a;
+
+  @media (max-width: 375px) {
+    margin-right: 15px;
+  }
 `;
 
 const StyledTag = styled(Link)`
-  padding: 0 5px;
+  padding: 0 10px;
   font-weight: 100;
   font-family: "Noto Sans JP", sans-serif;
-  color: #666666;
+  font-size: 20px;
+
+  &:first-of-type {
+    padding-left: 0;
+  }
 
   &:hover {
     text-decoration: underline;
+  }
+
+  @media (max-width: 375px) {
+    font-size: 15px;
   }
 `;
