@@ -50,7 +50,7 @@ const StyledPostTitle = styled(Link)`
   font-size: 35px;
   line-height: 50px;
 
-  @media (max-width: 375px) {
+  @media (max-width: 400px) {
     font-size: 25px;
     line-height: 35px;
   }
@@ -60,7 +60,7 @@ const StyledPostDateLanContainer = styled.div`
   margin-top: 15px;
   line-height: 1;
 
-  @media (max-width: 375px) {
+  @media (max-width: 400px) {
     margin-top: 10px;
   }
 `;
@@ -69,7 +69,7 @@ const StyledPostTagContainer = styled.div`
   margin-top: 15px;
   line-height: 1;
 
-  @media (max-width: 375px) {
+  @media (max-width: 400px) {
     margin-top: 10px;
   }
 `;
@@ -80,7 +80,7 @@ const StyledPostPublishDate = styled.span`
   font-size: 20px;
   color: #7a7a7a;
 
-  @media (max-width: 375px) {
+  @media (max-width: 400px) {
     margin-right: 10px;
     font-size: 15px;
   }
@@ -90,7 +90,7 @@ const StyledLan = styled(Link)`
   font-family: "Noto Serif JP", serif;
   font-size: 20px;
 
-  @media (max-width: 375px) {
+  @media (max-width: 400px) {
     font-size: 15px;
   }
 `;
@@ -105,7 +105,7 @@ const StyledPostTag = styled(Link)`
     text-decoration: underline;
   }
 
-  @media (max-width: 375px) {
+  @media (max-width: 400px) {
     margin-right: 10px;
     font-size: 15px;
   }

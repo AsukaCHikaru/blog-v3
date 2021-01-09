@@ -61,7 +61,7 @@ const StyledTitle = styled(Link)`
   line-height: 1;
   font-weight: 900;
 
-  @media (max-width: 375px) {
+  @media (max-width: 400px) {
     font-size: 30px;
   }
 `;
@@ -69,7 +69,7 @@ const StyledTitle = styled(Link)`
 const StyledCategoryTagContainer = styled.div`
   margin-top: 20px;
 
-  @media (max-width: 375px) {
+  @media (max-width: 400px) {
     margin-top: 15px;
   }
 `;
@@ -77,7 +77,7 @@ const StyledCategoryTagContainer = styled.div`
 const StyledCategoryContainer = styled.div`
   display: inline-block;
   
-  @media (max-width: 375px) {
+  @media (max-width: 400px) {
     margin-top: 15p;x
     display: block;
   }
@@ -103,7 +103,7 @@ const StyledCatogry = styled(Link)<{ selected: boolean }>`
     padding-left: 0;
   }
 
-  @media (max-width: 375px) {
+  @media (max-width: 400px) {
     font-size: 15px;
   }
 `;
@@ -118,7 +118,7 @@ const StyledSelectedTag = styled.span`
   text-decoration: underline;
   border-left: solid 1px #131313;
 
-  @media (max-width: 375px) {
+  @media (max-width: 400px) {
     font-size: 15px;
     border: none;
     padding: 0;

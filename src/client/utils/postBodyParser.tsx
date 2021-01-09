@@ -81,7 +81,7 @@ const StyledH2 = styled.h2`
   line-height: 2;
   font-weight: 700;
 
-  @media (max-width: 375px) {
+  @media (max-width: 400px) {
     font-size: 25px;
   }
 `;
@@ -91,7 +91,7 @@ const StyledH3 = styled.h3`
   line-height: 40px;
   font-weight: 700;
 
-  @media (max-width: 375px) {
+  @media (max-width: 400px) {
     font-size: 21px;
     line-height: 30px;
   }

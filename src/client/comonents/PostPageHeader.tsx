@@ -40,7 +40,7 @@ const StyledTitle = styled.h1`
   line-hegiht: 70px;
   font-weight: 700;
 
-  @media (max-width: 375px) {
+  @media (max-width: 400px) {
     font-size: 30px;
     line-hegiht: 40px;
   }
@@ -55,7 +55,7 @@ const StyledTagContainer = styled.div`
   margin-top: 20px;
   line-height: 1;
 
-  @media (max-width: 375px) {
+  @media (max-width: 400px) {
     margin-top: 15px;
   }
 `;
@@ -65,7 +65,7 @@ const StyledPublishDate = styled.span`
   font-size: 20px;
   color: #7a7a7a;
 
-  @media (max-width: 375px) {
+  @media (max-width: 400px) {
     margin-right: 15px;
   }
 `;
@@ -84,7 +84,7 @@ const StyledTag = styled(Link)`
     text-decoration: underline;
   }
 
-  @media (max-width: 375px) {
+  @media (max-width: 400px) {
     font-size: 15px;
   }
 `;
