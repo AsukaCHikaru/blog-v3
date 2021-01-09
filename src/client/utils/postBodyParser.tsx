@@ -51,9 +51,12 @@ export const postBodyParser = (
       ) {
         const youtubeUri = content.data.uri.replace(/watch\?v=/, "embed/");
         return (
-          <span className="iframeWrapper" key={`content-${index}`}>
-            <iframe id="ytplayer" width="640" height="360" src={youtubeUri} />
-          </span>
+          <StyledIFrameWrapper
+            className="iframeWrapper"
+            key={`content-${index}`}
+          >
+            <StyledIFrame id="ytplayer" src={youtubeUri} />
+          </StyledIFrameWrapper>
         );
       }
       return (
@@ -124,4 +127,17 @@ const StyledLongCode = styled(StyledCode)`
   width: 100%;
   overflow-x: scroll;
   line-height: 1.5;
+`;
+
+const StyledIFrameWrapper = styled.div``;
+
+const StyledIFrame = styled.iframe`
+  width: 656px;
+  height: 369px;
+  margin: 0 auto;
+
+  @media (max-width: 400px) {
+    width: 320px;
+    height: 180px;
+  }
 `;
