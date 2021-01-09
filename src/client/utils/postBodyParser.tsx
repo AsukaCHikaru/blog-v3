@@ -47,7 +47,11 @@ export const postBodyParser = (
     case "list-item":
       return <StyledLi key={`content-${index}`}>{body}</StyledLi>;
     case "hyperlink":
-      if (content.data.uri && /www\.youtube\.com/.test(content.data.uri)) {
+      console.log(content);
+      if (
+        content.data.uri &&
+        /www\.youtube\.com\/watch/.test(content.data.uri)
+      ) {
         const youtubeUri = content.data.uri.replace(/watch\?v=/, "embed/");
         return (
           <span className="iframeWrapper" key={`content-${index}`}>
