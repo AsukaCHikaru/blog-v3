@@ -33,6 +33,11 @@ export type PostLanguage = "zhTW" | "jaJP" | "enUS";
 
 export type PostCategory = "gaming" | "programming" | "others";
 
+export interface Asset {
+  uri: string;
+  description?: string;
+}
+
 export type ContentfulEntries<T> = {
   sys: {
     type: ContentfulSysType;
@@ -53,6 +58,7 @@ export type ContentfulEntry<T> = {
 
 export type ContentfulAsset = {
   fields: {
+    description?: string;
     file: ContentfulAssetFile;
     title: string;
   };

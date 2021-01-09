@@ -1,10 +1,10 @@
 import { STORE_STATUS, BaseState } from ".";
 import { PostAction, PostActionTypes } from "../action/postActions";
-import { ContentfulRichTextContent } from "../../hooks/api/types";
+import { Asset, ContentfulRichTextContent } from "../../hooks/api/types";
 import { AssetAction, AssetActionTypes } from "../action/assetActions";
 
 export interface AssetState extends BaseState {
-  data: Record<string, string>;
+  data: Record<string, Asset>;
 }
 
 const initialState: AssetState = {
@@ -25,7 +25,10 @@ export const assetReducer = (
         ...state,
         data: {
           ...state.data,
-          [assetId]: action.payload.data.fields.file.url,
+          [assetId]: {
+            uri: action.payload.data.fields.file.url,
+            description: action.payload.data.fields.description,
+          },
         },
       };
     default:
