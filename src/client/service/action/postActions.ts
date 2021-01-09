@@ -1,6 +1,7 @@
 import { AxiosError } from "axios";
 import { Action } from "redux";
-import { ContentfulEntry, PostContentType } from "../../hooks/api/types";
+import { PostContentType } from "../../types";
+import { ContentfulEntry } from "../../types/contentful";
 
 export enum PostActionTypes {
   FETCHING_POST = "FETCHING_POST",

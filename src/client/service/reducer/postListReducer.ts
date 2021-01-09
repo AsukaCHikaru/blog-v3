@@ -1,4 +1,4 @@
-import { PostList } from "../../hooks/api/types";
+import { PostList, PostSummary } from "../../types";
 import { STORE_STATUS, BaseState } from "./index";
 import { PostListAction, PostListActionTypes } from "../action/postListActions";
 

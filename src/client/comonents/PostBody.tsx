@@ -1,7 +1,7 @@
 import * as React from "react";
 import styled from "styled-components";
 
-import { ContentfulRichTextContent } from "../hooks/api/types";
+import { ContentfulRichTextContent } from "../types/contentful";
 import { postBodyParser } from "../utils/postBodyParser";
 
 type OwnProps = {

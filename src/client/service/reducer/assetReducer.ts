@@ -1,6 +1,5 @@
 import { STORE_STATUS, BaseState } from ".";
-import { PostAction, PostActionTypes } from "../action/postActions";
-import { Asset, ContentfulRichTextContent } from "../../hooks/api/types";
+import { Asset } from "../../types";
 import { AssetAction, AssetActionTypes } from "../action/assetActions";
 
 export interface AssetState extends BaseState {

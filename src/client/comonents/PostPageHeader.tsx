@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { PostCommonContentType } from "../hooks/api/types";
+import { PostCommonContentType } from "../types";
 
 import { dateParser } from "../utils/utils";
 

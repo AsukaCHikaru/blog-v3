@@ -2,7 +2,7 @@ import * as React from "react";
 import styled from "styled-components";
 
 import { Image } from "../comonents/Image";
-import { ContentfulRichTextContent } from "../hooks/api/types";
+import { ContentfulRichTextContent } from "../types/contentful";
 
 type OwnProps = {
   children: (string | JSX.Element | null)[];

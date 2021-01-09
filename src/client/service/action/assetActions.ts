@@ -1,6 +1,6 @@
 import { AxiosError } from "axios";
 import { Action } from "redux";
-import { ContentfulAsset } from "../../hooks/api/types";
+import { ContentfulAsset } from "../../types/contentful";
 
 export enum AssetActionTypes {
   FETCHING_ASSET = "FETCHING_ASSET",
