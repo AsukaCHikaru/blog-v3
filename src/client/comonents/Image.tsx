@@ -10,12 +10,11 @@ type OwnProps = {
 export const Image: React.FC<OwnProps> = ({ assetId }) => {
   const asset = useSelector((state: RootState) => state.asset);
 
-  if (asset.data[assetId])
-    return (
-      <StyledImgWrapper>
-        <StyledImage src={asset.data[assetId]} alt="" />
-      </StyledImgWrapper>
-    );
+  return (
+    <StyledImgWrapper>
+      <StyledImage src={asset.data[assetId]} alt="" />
+    </StyledImgWrapper>
+  );
 };
 
 const StyledImgWrapper = styled.div`
