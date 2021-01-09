@@ -18,8 +18,6 @@ export const postBodyParser = (
         return content.value;
       }
       if (content.marks[0].type === "code") {
-        console.log(content.value, /\r?\n|\r/.test(content.value));
-
         if (/\r?\n|\r/.test(content.value)) {
           return <StyledLongCode>{content.value}</StyledLongCode>;
         }
@@ -47,7 +45,6 @@ export const postBodyParser = (
     case "list-item":
       return <StyledLi key={`content-${index}`}>{body}</StyledLi>;
     case "hyperlink":
-      console.log(content);
       if (
         content.data.uri &&
         /www\.youtube\.com\/watch/.test(content.data.uri)
