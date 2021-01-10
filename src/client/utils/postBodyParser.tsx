@@ -60,7 +60,12 @@ export const postBodyParser = (
         );
       }
       return (
-        <StyledA href={content.data.uri} key={`content-${index}`}>
+        <StyledA
+          href={content.data.uri}
+          key={`content-${index}`}
+          rel="noopener noreferrer"
+          target="_blank"
+        >
           {body}
         </StyledA>
       );
