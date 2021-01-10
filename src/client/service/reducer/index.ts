@@ -23,6 +23,21 @@ export interface RootState {
   asset: AssetState;
 }
 
+export const initialRootState: RootState = {
+  postList: {
+    list: [],
+    status: STORE_STATUS.IDLE,
+  },
+  post: {
+    data: {},
+    status: STORE_STATUS.IDLE,
+  },
+  asset: {
+    data: {},
+    status: STORE_STATUS.IDLE,
+  },
+};
+
 export const rootReducer: Reducer<RootState> = combineReducers({
   postList: postListReducer,
   post: postReducer,
