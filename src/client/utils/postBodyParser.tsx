@@ -134,7 +134,7 @@ const StyledLongCode = styled(StyledCode)`
   line-height: 1.5;
 `;
 
-const StyledIFrameWrapper = styled.div``;
+const StyledIFrameWrapper = styled.span``;
 
 const StyledIFrame = styled.iframe`
   width: 656px;
