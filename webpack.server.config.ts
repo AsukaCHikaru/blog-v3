@@ -35,6 +35,7 @@ const config: webpack.Configuration = {
         CONTENTFUL_SPACE_ID: JSON.stringify(
           process.env.CONTENTFUL_SPACE_ID || ""
         ),
+        PORT: JSON.stringify(process.env.PORT) || 3000,
       },
     }),
   ],
