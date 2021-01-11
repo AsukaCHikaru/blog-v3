@@ -91,8 +91,8 @@ export const getFullHTML = (
       <body ${helmet?.bodyAttributes.toString()}>
         <div id="app-root">${htmlBody}</div>
         <script>window.__INITIAL_STATE__ = ${initialState}</script>
-        <script src="main.bundle.js" type="text/javascript" charset="utf-8"></script>
-        <script src="vendor.bundle.js" type="text/javascript" charset="utf-8"></script>
+        <script defer src="main.bundle.js" type="text/javascript" charset="utf-8"></script>
+        <script defer src="vendor.bundle.js" type="text/javascript" charset="utf-8"></script>
       </body>
     </html>
   `;
