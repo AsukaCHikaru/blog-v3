@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Helmet as ReactHelmet } from "react-helmet";
+import { useLocation } from "react-router-dom";
 
 type OwnProps = {
   title?: string;
@@ -7,6 +8,8 @@ type OwnProps = {
 };
 
 export const Helmet: React.FC<OwnProps> = ({ title, description }) => {
+  const location = useLocation();
+
   return (
     <ReactHelmet>
       <meta charSet="utf-8" />
@@ -37,7 +40,10 @@ export const Helmet: React.FC<OwnProps> = ({ title, description }) => {
         name="twitter:description"
         content={description || "Asukachikaru's blog."}
       />
-      {/* <meta name="og:url" content={window.location.href} /> */}
+      <meta
+        name="og:url"
+        content={`https://blog.asukachikaru.com${location.pathname}`}
+      />
       <meta name="og:type" content="website" />
       <meta name="twitter:card" content="summary" />
     </ReactHelmet>
