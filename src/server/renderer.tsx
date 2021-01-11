@@ -1,6 +1,7 @@
 import * as Express from "express";
 import * as React from "react";
 import * as ReactDOMServer from "react-dom/server";
+import { Helmet, HelmetData } from "react-helmet";
 import { Provider } from "react-redux";
 import { StaticRouter } from "react-router-dom";
 import { createStore } from "redux";
@@ -41,6 +42,7 @@ export const renderer = (app: Express.Application) => {
     let htmlBody = "";
     let styleTags = "";
     const store = createStore(rootReducer, preloadedState);
+    let helmet;
 
     try {
       htmlBody = ReactDOMServer.renderToString(
@@ -52,6 +54,7 @@ export const renderer = (app: Express.Application) => {
           </Provider>
         )
       );
+      helmet = Helmet.renderStatic();
       styleTags = sheet.getStyleTags();
     } catch (error) {
       console.error(error);
@@ -60,7 +63,7 @@ export const renderer = (app: Express.Application) => {
     }
     const initialState = JSON.stringify(store.getState());
 
-    const fullHTML = getFullHTML(htmlBody, styleTags, initialState);
+    const fullHTML = getFullHTML(htmlBody, styleTags, initialState, helmet);
     res.send(fullHTML);
   });
 };
@@ -68,20 +71,24 @@ export const renderer = (app: Express.Application) => {
 export const getFullHTML = (
   htmlBody: string,
   styleTags: string,
-  initialState: string
+  initialState: string,
+  helmet?: HelmetData
 ) => {
   return `
     <!DOCTYPE html>
-    <html>
+    <html ${helmet?.htmlAttributes.toString()}>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         ${styleTags}
+        ${helmet?.title.toString()}
+        ${helmet?.meta.toString()}
+        ${helmet?.link.toString()}
         <style>
           @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700;900&display=swap');
           @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;400&display=swap');
         </style>
       </head>
-      <body>
+      <body ${helmet?.bodyAttributes.toString()}>
         <div id="app-root">${htmlBody}</div>
         <script>window.__INITIAL_STATE__ = ${initialState}</script>
         <script src="main.bundle.js" type="text/javascript" charset="utf-8"></script>
