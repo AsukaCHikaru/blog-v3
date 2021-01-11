@@ -28,6 +28,16 @@ const config: webpack.Configuration = {
     extensions: [".ts", ".tsx"],
   },
   externals: [nodeExternals()],
+  plugins: [
+    new webpack.DefinePlugin({
+      "process.env": {
+        CONTENTFUL_TOKEN: JSON.stringify(process.env.CONTENTFUL_TOKEN || ""),
+        CONTENTFUL_SPACE_ID: JSON.stringify(
+          process.env.CONTENTFUL_SPACE_ID || ""
+        ),
+      },
+    }),
+  ],
 };
 
 export default config;

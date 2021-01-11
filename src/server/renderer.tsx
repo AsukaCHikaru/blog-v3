@@ -7,10 +7,11 @@ import { createStore } from "redux";
 import { ServerStyleSheet } from "styled-components";
 
 import { App } from "../client/App";
-import { rootReducer } from "../client/service/reducer";
+import { rootReducer, RootState } from "../client/service/reducer";
+import { initStore } from "./store";
 
 export const renderer = (app: Express.Application) => {
-  app.get("*", (req: Express.Request, res: Express.Response) => {
+  app.get("*", async (req: Express.Request, res: Express.Response) => {
     if (/main\.bundle\.js/.test(req.url)) {
       res.redirect("/main.bundle.js");
       return;
@@ -24,11 +25,19 @@ export const renderer = (app: Express.Application) => {
       return;
     }
 
+    const { postListState } = await initStore(req);
+    const preloadedState: RootState = {
+      postList: postListState,
+      post: { status: 1, data: {} },
+      asset: { status: 1, data: {} },
+    };
+
     const context = {};
     const sheet = new ServerStyleSheet();
     let htmlBody = "";
     let styleTags = "";
-    const store = createStore(rootReducer);
+    const store = createStore(rootReducer, preloadedState);
+
     try {
       htmlBody = ReactDOMServer.renderToString(
         sheet.collectStyles(
@@ -46,6 +55,8 @@ export const renderer = (app: Express.Application) => {
       sheet.seal();
     }
     const initialState = JSON.stringify(store.getState());
+    console.log(initialState);
+
     const fullHTML = getFullHTML(htmlBody, styleTags, initialState);
     res.send(fullHTML);
   });
