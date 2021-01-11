@@ -1,7 +1,8 @@
 import * as Express from "express";
 import { matchPath } from "react-router-dom";
 import { createStore } from "redux";
-import { getPostList } from "../client/hooks/api/apiCore";
+
+import { getPost, getPostList } from "../client/hooks/api/apiCore";
 import { routes } from "../client/routes";
 import {
   initialRootState,
@@ -9,27 +10,36 @@ import {
   STORE_STATUS,
 } from "../client/service/reducer";
 import { PostListState } from "../client/service/reducer/postListReducer";
-import { PostList, PostListContentType } from "../client/types";
-import { ContentfulEntries } from "../client/types/contentful";
+import { PostState } from "../client/service/reducer/postReducer";
+import {
+  PostContentType,
+  PostList,
+  PostListContentType,
+} from "../client/types";
+import { ContentfulEntries, ContentfulEntry } from "../client/types/contentful";
 
 export const initStore = async (req: Express.Request) => {
-  const initialState = initialRootState;
-  const postListPath = routes[0];
   const postPath = routes[1];
   let store = createStore(rootReducer, initialRootState);
 
   const postListData = await getPostList();
   const postListState = convertPostListResponseToState(postListData);
+  let postState: PostState = { status: STORE_STATUS.IDLE, data: {} };
 
   if (!/fonts\.googleapis/.test(req.path)) {
-    const match = matchPath(req.path, postPath);
-    console.log("match", req.path, match);
+    const match = matchPath<{ postPath: string }>(req.path, postPath);
     if (match !== null) {
-      // console.log(postListState.list.find((postSummary) => postSummary.path === );
+      const postSummary = postListState.list.find(
+        (postSummary) => postSummary.path === match.params.postPath
+      );
+      if (postSummary?.id) {
+        const postData = await getPost(postSummary?.id);
+        postState = convertPostResponseToState(postSummary.id, postData);
+      }
     }
   }
 
-  return { postListState };
+  return { postListState, postState };
 };
 
 const convertPostListResponseToState = (
@@ -44,6 +54,18 @@ const convertPostListResponseToState = (
 
   return {
     list: postList,
+    status: STORE_STATUS.SUCCEED,
+  };
+};
+
+const convertPostResponseToState = (
+  postId: string,
+  data: ContentfulEntry<PostContentType>
+): PostState => {
+  return {
+    data: {
+      [postId]: data.fields.body.content,
+    },
     status: STORE_STATUS.SUCCEED,
   };
 };

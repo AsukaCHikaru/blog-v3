@@ -7,7 +7,11 @@ import { createStore } from "redux";
 import { ServerStyleSheet } from "styled-components";
 
 import { App } from "../client/App";
-import { rootReducer, RootState } from "../client/service/reducer";
+import {
+  rootReducer,
+  RootState,
+  STORE_STATUS,
+} from "../client/service/reducer";
 import { initStore } from "./store";
 
 export const renderer = (app: Express.Application) => {
@@ -25,11 +29,11 @@ export const renderer = (app: Express.Application) => {
       return;
     }
 
-    const { postListState } = await initStore(req);
+    const { postListState, postState } = await initStore(req);
     const preloadedState: RootState = {
       postList: postListState,
-      post: { status: 1, data: {} },
-      asset: { status: 1, data: {} },
+      post: postState,
+      asset: { status: STORE_STATUS.IDLE, data: {} },
     };
 
     const context = {};
@@ -55,7 +59,6 @@ export const renderer = (app: Express.Application) => {
       sheet.seal();
     }
     const initialState = JSON.stringify(store.getState());
-    console.log(initialState);
 
     const fullHTML = getFullHTML(htmlBody, styleTags, initialState);
     res.send(fullHTML);
