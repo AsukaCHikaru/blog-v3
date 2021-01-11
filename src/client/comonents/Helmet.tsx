@@ -37,7 +37,7 @@ export const Helmet: React.FC<OwnProps> = ({ title, description }) => {
         name="twitter:description"
         content={description || "Asukachikaru's blog."}
       />
-      <meta name="og:url" content={window.location.href} />
+      {/* <meta name="og:url" content={window.location.href} /> */}
       <meta name="og:type" content="website" />
       <meta name="twitter:card" content="summary" />
     </ReactHelmet>
