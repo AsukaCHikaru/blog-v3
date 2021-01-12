@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import styled from "styled-components";
 
 import { RootState } from "../../service/reducer";
@@ -33,6 +33,7 @@ export const PostPage: React.FC<PostPageProps> = ({
   const { postPath } = useParams<Params>();
   const postList = useSelector((state: RootState) => state.postList);
   const post = useSelector((state: RootState) => state.post);
+  const history = useHistory();
 
   useScrollTop();
 
@@ -64,7 +65,8 @@ export const PostPage: React.FC<PostPageProps> = ({
   }, [postId]);
 
   if (!postId || !postSummary) {
-    return <StyledContainer>LOADING</StyledContainer>;
+    history.replace("/404");
+    return null;
   }
 
   return (
