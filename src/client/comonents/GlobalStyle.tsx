@@ -25,10 +25,11 @@ const resetCss = css`
     margin: 0;
   }
   html {
+    min-height: 100vh;
     scroll-behavior: auto;
   }
   body {
-    min-height: 100vh;
+    height: 100vh;
     text-rendering: optimizeSpeed;
     line-height: 1.5;
   }
@@ -71,6 +72,10 @@ export const GlobalStyle = createGlobalStyle`
   body {
     background-color: #eaeaea;
     color: #131313; 
+  }
+
+  #app-root {
+    height: 100%;
   }
 
   h1, h2, h3, h4, h5, h6, a, p, span {

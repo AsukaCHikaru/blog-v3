@@ -7,7 +7,11 @@ import { PostLink } from "../../comonents/PostLink";
 import { RootState, STORE_STATUS } from "../../service/reducer";
 import { PostListPageHeader } from "../../comonents/PostListPageHeader";
 import { Footer } from "../../comonents/Footer";
-import { PostListPageLayout } from "../../comonents/Layout";
+import {
+  PostListPageLayout,
+  StyledContents,
+  StyledBottomContents,
+} from "../../comonents/Layout";
 import { Helmet } from "../../comonents/Helmet";
 import { useScrollTop } from "../../hooks/useScrollTop";
 
@@ -59,13 +63,17 @@ export const PostListPage: React.FC<PostListPageProps> = ({
       <Helmet />
       <StyledContainer>
         <PostListPageHeader selectedCategory={category} />
-        {filteredPostList &&
-          filteredPostList.list &&
-          filteredPostList.list.length > 0 &&
-          filteredPostList.list.map((post) => (
-            <PostLink postSummary={post} key={post.path} />
-          ))}
-        <Footer />
+        <StyledContents>
+          {filteredPostList &&
+            filteredPostList.list &&
+            filteredPostList.list.length > 0 &&
+            filteredPostList.list.map((post) => (
+              <PostLink postSummary={post} key={post.path} />
+            ))}
+        </StyledContents>
+        <StyledBottomContents>
+          <Footer />
+        </StyledBottomContents>
       </StyledContainer>
     </PostListPageLayout>
   );

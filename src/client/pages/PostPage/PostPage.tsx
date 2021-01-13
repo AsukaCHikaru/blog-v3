@@ -8,7 +8,11 @@ import { PostPageHeader } from "../../comonents/PostPageHeader";
 import { Footer } from "../../comonents/Footer";
 import { PostPageFooter } from "../../comonents/PostPageFooter";
 import { PostBody } from "../../comonents/PostBody";
-import { PostPageLayout } from "../../comonents/Layout";
+import {
+  PostPageLayout,
+  StyledBottomContents,
+  StyledContents,
+} from "../../comonents/Layout";
 import { Helmet } from "../../comonents/Helmet";
 import { useScrollTop } from "../../hooks/useScrollTop";
 
@@ -71,19 +75,21 @@ export const PostPage: React.FC<PostPageProps> = ({
 
   return (
     <PostPageLayout>
-      <Helmet title={postSummary.title} description={postSummary.description} />
       <StyledContainer>
+        <Helmet
+          title={postSummary.title}
+          description={postSummary.description}
+        />
         <PostPageHeader postSummary={postSummary} />
-        {post?.data[postId] ? (
-          <PostBody postBody={post?.data[postId]} />
-        ) : (
-          <>
-            <PostBody postBody={postSummary.preview.content} />
-            ...
-          </>
-        )}
-        <PostPageFooter />
-        <Footer />
+        <StyledContents>
+          <PostBody
+            postBody={post?.data[postId] || postSummary.preview.content}
+          />
+        </StyledContents>
+        <StyledBottomContents>
+          <PostPageFooter />
+          <Footer />
+        </StyledBottomContents>
       </StyledContainer>
     </PostPageLayout>
   );
