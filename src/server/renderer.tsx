@@ -61,7 +61,7 @@ export const renderer = (app: Express.Application) => {
     } finally {
       sheet.seal();
     }
-    const initialState = JSON.stringify(store.getState());
+    const initialState = encodeURIComponent(JSON.stringify(store.getState()));
 
     const fullHTML = getFullHTML(htmlBody, styleTags, initialState, helmet);
     res.send(fullHTML);
