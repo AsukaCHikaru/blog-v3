@@ -1,7 +1,7 @@
 import * as React from "react";
 import styled from "styled-components";
 
-import { Image } from "../comonents/Image";
+import { Image } from "../components/Image";
 import { ContentfulRichTextContent } from "../types/contentful";
 
 type OwnProps = {

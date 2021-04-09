@@ -21,30 +21,30 @@ export const PostListPageHeader: React.FC<OwnProps> = ({
       <StyledTitle to="/">The work is undone.</StyledTitle>
       <StyledCategoryTagContainer>
         <StyledCategoryContainer>
-          <StyledCatogry
+          <StyledCategory
             to="/"
             selected={selectedCategory === undefined && !tag}
           >
             ALL
-          </StyledCatogry>
-          <StyledCatogry
+          </StyledCategory>
+          <StyledCategory
             to="/category/gaming"
             selected={selectedCategory === "gaming"}
           >
             GAMING
-          </StyledCatogry>
-          <StyledCatogry
+          </StyledCategory>
+          <StyledCategory
             to="/category/programming"
             selected={selectedCategory === "programming"}
           >
             PROGRAMMING
-          </StyledCatogry>
-          <StyledCatogry
+          </StyledCategory>
+          <StyledCategory
             to="/category/others"
             selected={selectedCategory === "others"}
           >
             OTHERS
-          </StyledCatogry>
+          </StyledCategory>
           <StyledAboutLink
             href="https://asukachikaru.com"
             rel="noreferrer noopener"
@@ -90,7 +90,7 @@ const StyledCategoryContainer = styled.div`
   }
 `;
 
-const StyledCatogry = styled(Link)<{ selected: boolean }>`
+const StyledCategory = styled(Link)<{ selected: boolean }>`
   padding: 0 10px;
   font-family: "Courier New", Courier, "Noto Sans JP", monospace;
   font-size: 20px;

@@ -3,7 +3,7 @@ import { Switch, Route } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 
 import { routes } from "./routes";
-import { GlobalStyle } from "./comonents/GlobalStyle";
+import { GlobalStyle } from "./components/GlobalStyle";
 import { theme } from "./theme";
 
 export const App: React.FC = () => {

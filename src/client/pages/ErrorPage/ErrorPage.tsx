@@ -2,9 +2,9 @@ import * as React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-import { PostListPageLayout, StyledContents } from "../../comonents/Layout";
-import { ErrorPageHeader } from "../../comonents/ErrorPageHeader";
-import { Footer } from "../../comonents/Footer";
+import { PostListPageLayout, StyledContents } from "../../components/Layout";
+import { ErrorPageHeader } from "../../components/ErrorPageHeader";
+import { Footer } from "../../components/Footer";
 
 export const ErrorPage: React.FC = () => {
   return (

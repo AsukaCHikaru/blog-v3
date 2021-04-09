@@ -4,16 +4,16 @@ import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
 import { RootState } from "../../service/reducer";
-import { PostPageHeader } from "../../comonents/PostPageHeader";
-import { Footer } from "../../comonents/Footer";
-import { PostPageFooter } from "../../comonents/PostPageFooter";
-import { PostBody } from "../../comonents/PostBody";
+import { PostPageHeader } from "../../components/PostPageHeader";
+import { Footer } from "../../components/Footer";
+import { PostPageFooter } from "../../components/PostPageFooter";
+import { PostBody } from "../../components/PostBody";
 import {
   PostPageLayout,
   StyledBottomContents,
   StyledContents,
-} from "../../comonents/Layout";
-import { Helmet } from "../../comonents/Helmet";
+} from "../../components/Layout";
+import { Helmet } from "../../components/Helmet";
 import { useScrollTop } from "../../hooks/useScrollTop";
 
 interface OwnProps {}

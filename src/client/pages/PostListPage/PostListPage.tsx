@@ -3,16 +3,16 @@ import { useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 import styled from "styled-components";
 
-import { PostLink } from "../../comonents/PostLink";
+import { PostLink } from "../../components/PostLink";
 import { RootState, STORE_STATUS } from "../../service/reducer";
-import { PostListPageHeader } from "../../comonents/PostListPageHeader";
-import { Footer } from "../../comonents/Footer";
+import { PostListPageHeader } from "../../components/PostListPageHeader";
+import { Footer } from "../../components/Footer";
 import {
   PostListPageLayout,
   StyledContents,
   StyledBottomContents,
-} from "../../comonents/Layout";
-import { Helmet } from "../../comonents/Helmet";
+} from "../../components/Layout";
+import { Helmet } from "../../components/Helmet";
 import { useScrollTop } from "../../hooks/useScrollTop";
 
 interface OwnProps {}
