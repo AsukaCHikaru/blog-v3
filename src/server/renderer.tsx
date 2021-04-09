@@ -31,6 +31,12 @@ export const renderer = (app: Express.Application) => {
     }
 
     const { postListState, postState } = await initStore(req);
+
+    if (postState.status === STORE_STATUS.POST_NOT_FOUND) {
+      res.redirect("/404");
+      return;
+    }
+    
     const preloadedState: RootState = {
       postList: postListState,
       post: postState,

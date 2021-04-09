@@ -7,8 +7,9 @@ import { postReducer, PostState } from "./postReducer";
 export const STORE_STATUS = {
   IDLE: 1,
   PENDING: 2,
-  SUCCEED: 3,
-  FAILED: 9,
+  SUCCEED: 200,
+  FAILED: 900,
+  POST_NOT_FOUND: 901,
 } as const;
 export type StoreStatus = typeof STORE_STATUS[keyof typeof STORE_STATUS];
 
