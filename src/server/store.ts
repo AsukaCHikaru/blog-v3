@@ -35,6 +35,8 @@ export const initStore = async (req: Express.Request) => {
       if (postSummary?.id) {
         const postData = await getPost(postSummary?.id);
         postState = convertPostResponseToState(postSummary.id, postData);
+      } else {
+        postState.status = STORE_STATUS.NO_POST;
       }
     }
   }
