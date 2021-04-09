@@ -45,6 +45,13 @@ export const PostListPageHeader: React.FC<OwnProps> = ({
           >
             OTHERS
           </StyledCatogry>
+          <StyledAboutLink
+            href="https://asukachikaru.com"
+            rel="noreferrer noopener"
+            target="_blank"
+          >
+            ABOUT
+          </StyledAboutLink>
         </StyledCategoryContainer>
         {tag && <StyledSelectedTag>#{tag}</StyledSelectedTag>}
       </StyledCategoryTagContainer>
@@ -122,5 +129,18 @@ const StyledSelectedTag = styled.span`
     font-size: 15px;
     border: none;
     padding: 0;
+  }
+`;
+
+const StyledAboutLink = styled.a`
+  padding: 0 10px;
+  font-family: "Courier New", Courier, "Noto Sans JP", monospace;
+  font-size: 20px;
+  line-height: 1;
+  font-weight: 100;
+  border-left: solid 1px #131313;
+  color: #7a7a7a;
+  &:hover {
+    text-decoration: underline;
   }
 `;
