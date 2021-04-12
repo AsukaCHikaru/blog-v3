@@ -6,7 +6,8 @@ import { renderer } from "./renderer";
 const APP_PORT = process.env.PORT || 3000;
 const app = Express();
 
-app.use(Express.static(resolve(__dirname, "..", "static")));
+app.use("/static", Express.static(resolve(__dirname, "../static")));
+
 renderer(app);
 
 app.listen(APP_PORT, () => {

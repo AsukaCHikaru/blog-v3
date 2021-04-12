@@ -17,14 +17,6 @@ import { initStore } from "./store";
 
 export const renderer = (app: Express.Application) => {
   app.get("*", async (req: Express.Request, res: Express.Response) => {
-    if (/main\.bundle\.js/.test(req.url)) {
-      res.send("/main.bundle.js");
-      return;
-    }
-    if (/vendor\.bundle\.js/.test(req.url)) {
-      res.send("/vendor.bundle.js");
-      return;
-    }
     if (/favicon\.ico/.test(req.url)) {
       res.send("");
       return;
@@ -36,7 +28,7 @@ export const renderer = (app: Express.Application) => {
       res.redirect("/404");
       return;
     }
-    
+
     const preloadedState: RootState = {
       postList: postListState,
       post: postState,
@@ -97,8 +89,8 @@ export const getFullHTML = (
       <body ${helmet?.bodyAttributes.toString()}>
         <div id="app-root">${htmlBody}</div>
         <script>window.__INITIAL_STATE__ = ${initialState}</script>
-        <script defer src="main.bundle.js" type="text/javascript" charset="utf-8"></script>
-        <script defer src="vendor.bundle.js" type="text/javascript" charset="utf-8"></script>
+        <script defer src="/static/main.bundle.js" type="text/javascript" charset="utf-8"></script>
+        <script defer src="/static/vendor.bundle.js" type="text/javascript" charset="utf-8"></script>
       </body>
     </html>
   `;
