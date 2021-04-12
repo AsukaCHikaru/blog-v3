@@ -18,11 +18,11 @@ import { initStore } from "./store";
 export const renderer = (app: Express.Application) => {
   app.get("*", async (req: Express.Request, res: Express.Response) => {
     if (/main\.bundle\.js/.test(req.url)) {
-      res.redirect("/main.bundle.js");
+      res.send("/main.bundle.js");
       return;
     }
     if (/vendor\.bundle\.js/.test(req.url)) {
-      res.redirect("/vendor.bundle.js");
+      res.send("/vendor.bundle.js");
       return;
     }
     if (/favicon\.ico/.test(req.url)) {
