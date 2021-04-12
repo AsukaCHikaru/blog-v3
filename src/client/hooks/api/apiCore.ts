@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig } from "axios";
 
-import { CONETNTFUL_API_ENDPOINT, CONTENTFUL_TOKEN } from "./env";
+import { CONTENTFUL_API_ENDPOINT, CONTENTFUL_TOKEN } from "./env";
 
 const axiosAuthHeader: AxiosRequestConfig = {
   headers: {
@@ -10,7 +10,7 @@ const axiosAuthHeader: AxiosRequestConfig = {
 
 export const getPostList = async (tag?: string, category?: string) => {
   const response = await axios.get(
-    `${CONETNTFUL_API_ENDPOINT}/entries?content_type=postList`,
+    `${CONTENTFUL_API_ENDPOINT}/entries?content_type=postList`,
     axiosAuthHeader
   );
   return response.data;
@@ -18,7 +18,7 @@ export const getPostList = async (tag?: string, category?: string) => {
 
 export const getPost = async (id: string) => {
   const response = await axios.get(
-    `${CONETNTFUL_API_ENDPOINT}/entries/${id}`,
+    `${CONTENTFUL_API_ENDPOINT}/entries/${id}`,
     axiosAuthHeader
   );
   return response.data;
@@ -26,7 +26,7 @@ export const getPost = async (id: string) => {
 
 export const getAsset = async (id: string) => {
   const response = await axios.get(
-    `${CONETNTFUL_API_ENDPOINT}/assets/${id}`,
+    `${CONTENTFUL_API_ENDPOINT}/assets/${id}`,
     axiosAuthHeader
   );
   return response.data;

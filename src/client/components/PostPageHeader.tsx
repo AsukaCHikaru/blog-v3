@@ -37,12 +37,12 @@ const StyledContainer = styled.div`
 
 const StyledTitle = styled.h1`
   font-size: 50px;
-  line-hegiht: 70px;
+  line-height: 70px;
   font-weight: 700;
 
   @media (max-width: 400px) {
     font-size: 30px;
-    line-hegiht: 40px;
+    line-height: 40px;
   }
 `;
 
