@@ -49,6 +49,7 @@ const StyledTitle = styled.h1`
 const StyledDateLanContainer = styled.div`
   margin-top: 10px;
   line-height: 1;
+  font-family: 'Noto Serif JP', serif;
 `;
 
 const StyledTagContainer = styled.div`
