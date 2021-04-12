@@ -14,7 +14,7 @@ export const PostListPageLayout: React.FC<OwnProps> = ({ children }) => {
 export const PostPageLayout: React.FC<OwnProps> = ({ children }) => {
   return (
     <StyledScroller>
-      <StyledPostPageContainer>{children}</StyledPostPageContainer>;
+      <StyledPostPageContainer>{children}</StyledPostPageContainer>
     </StyledScroller>
   );
 };

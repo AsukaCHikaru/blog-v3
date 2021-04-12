@@ -7,6 +7,12 @@
   "plugins": [
     "@babel/proposal-class-properties",
     "@babel/proposal-object-rest-spread",
-    "babel-plugin-styled-components"
+    "babel-plugin-styled-components",
+    ["prismjs", {
+      "languages:": ["javascript"],
+      "plugins": ["line-numbers", "show-language"],
+      "theme": "default",
+      "css": true
+    }]
   ]
 }

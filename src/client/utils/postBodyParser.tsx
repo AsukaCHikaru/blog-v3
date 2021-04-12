@@ -125,7 +125,8 @@ const StyledCode = styled.code`
   padding: 0 5px;
   display: inline-block;
   font-size: 15px;
-  color: #363636;
+  color: #131313;
+  border-radius: 5px;
 `;
 
 const StyledIFrameWrapper = styled.span``;
