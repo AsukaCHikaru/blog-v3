@@ -1,6 +1,7 @@
 import * as React from "react";
 import styled from "styled-components";
 
+import { Code } from "../components/Code";
 import { Image } from "../components/Image";
 import { ContentfulRichTextContent } from "../types/contentful";
 
@@ -19,7 +20,7 @@ export const postBodyParser = (
       }
       if (content.marks[0].type === "code") {
         if (/\r?\n|\r/.test(content.value)) {
-          return <StyledLongCode>{content.value}</StyledLongCode>;
+          return <Code>{content.value}</Code>
         }
         return <StyledCode>{content.value}</StyledCode>;
       }
@@ -125,13 +126,6 @@ const StyledCode = styled.code`
   display: inline-block;
   font-size: 15px;
   color: #363636;
-`;
-
-const StyledLongCode = styled(StyledCode)`
-  padding: 20px;
-  width: 100%;
-  overflow-x: scroll;
-  line-height: 1.5;
 `;
 
 const StyledIFrameWrapper = styled.span``;
